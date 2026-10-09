@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vuahem (vuahem.lol) — Soi rủi ro hóa đơn đầu vào trước khi nộp tờ khai thuế</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{
+ ink:'#000000',night:'#000000',nightElev:'#0a0a0a',surfDark:'#1e2c31',
+ canvas:'#ffffff',cream:'#fbfbf5',
+ shade:{30:'#d4d4d8',40:'#a1a1aa',50:'#71717a',60:'#52525b',70:'#3f3f46'},
+ line:{DEFAULT:'#e4e4e7',dark:'#1e2c31'},
+ aloe:'#c1fbd4',pistachio:'#d4f9e0',
+ cool:{c1:'#9dabad',c2:'#9797a2',c3:'#bdbdca',mint:'#99b3ad'}
+},fontFamily:{
+ display:['"Helvetica Now Display"','"Inter"','Helvetica','Arial','sans-serif'],
+ body:['"Inter Variable"','Inter','Helvetica','Arial','sans-serif'],
+ mono:['ui-monospace','SFMono-Regular','Menlo','Monaco','Consolas','monospace']
+}}}}
+</script>
+<style>
+[hidden]{display:none !important}
+html{font-feature-settings:"ss03"}
+body{background:#fbfbf5;color:#000;font-family:"Inter Variable",Inter,Helvetica,Arial,sans-serif;font-weight:420;-webkit-font-smoothing:antialiased}
+.dsp{font-family:"Helvetica Now Display","Inter",Helvetica,Arial,sans-serif;font-weight:330;line-height:1.0;letter-spacing:2.4px}
+.dsp-lg{font-family:"Helvetica Now Display","Inter",Helvetica,Arial,sans-serif;font-weight:330;line-height:1.16;letter-spacing:0}
+.h-xl{font-family:"Helvetica Now Display","Inter",Helvetica,Arial,sans-serif;font-weight:500;font-size:28px;line-height:1.28;letter-spacing:.42px}
+.h-md{font-family:"Helvetica Now Display","Inter",Helvetica,Arial,sans-serif;font-weight:500;font-size:20px;line-height:1.4;letter-spacing:.3px}
+.eyebrow{font-size:12px;font-weight:400;line-height:1.2;letter-spacing:.72px;text-transform:uppercase}
+.cap{font-size:14px;font-weight:500;line-height:1.49;letter-spacing:.28px}
+.micro{font-size:13px;font-weight:500;line-height:1.5;letter-spacing:-.13px}
+.btn-pill{border-radius:9999px;padding:12px 24px;font-size:16px;font-weight:550;line-height:1.5;display:inline-block;text-align:center}
+.btn-solid{background:#000;color:#fff}
+.btn-solid:active{background:#3f3f46}
+.btn-out-dark{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px #fff}
+.btn-out-light{background:#fff;color:#000;box-shadow:inset 0 0 0 1px #000}
+.btn-aloe{background:#c1fbd4;color:#000;box-shadow:inset 0 0 0 2px #fff}
+.tag-mint{background:#c1fbd4;color:#000;border-radius:9999px;padding:4px 12px;font-size:12px;letter-spacing:.72px}
+.tag-shade{background:#d4d4d8;color:#000;border-radius:9999px;padding:4px 12px;font-size:12px;letter-spacing:.72px}
+.card-light{background:#fff;border:1px solid #e4e4e7;border-radius:12px;box-shadow:0 8px 8px rgba(0,0,0,.1),0 4px 4px rgba(0,0,0,.1),0 2px 2px rgba(0,0,0,.1),0 0 0 1px rgba(0,0,0,.1)}
+.frame-dark{background:#0a0a0a;border:1px solid #1e2c31;border-radius:20px;box-shadow:0 1px 2px rgba(255,255,255,.05),inset 0 1px 0 rgba(255,255,255,.04)}
+.card-dark{background:#0a0a0a;border:1px solid #1e2c31;border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.hairline{border:1px solid #e4e4e7}
+.break-any{overflow-wrap:anywhere;word-break:break-word}
+input[type=range]{accent-color:#000}
+.snap-row{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:.5rem}
+.snap-row>*{flex:0 0 88%;scroll-snap-align:center}
+@media(min-width:768px){.snap-row{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible;padding-bottom:0}.snap-row>*{flex:none}}
+:focus-visible{outline:2px solid #fff;outline-offset:2px}
+</style>
+</head>
+<body class="selection:bg-black selection:text-white">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:rounded">Bỏ qua tới nội dung</a>
+
+<!-- ══════════ CINEMATIC TRACK: nav + hero + signals + scanner ══════════ -->
+
+<header class="sticky top-0 z-50 bg-black">
+<div class="max-w-[1440px] mx-auto px-5 lg:px-8">
+  <div class="h-16 flex items-center justify-between gap-4">
+    <div class="flex items-center gap-2.5 min-w-0">
+      <svg class="shrink-0 w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <path d="M12 3.2l6 3v5.8c0 3.6-2.5 6.8-6 7.8-3.5-1-6-4.2-6-7.8V6.2l6-3z" stroke-width="1.4"/>
+        <path d="M9 12.2l2.1 2.1L15.4 10" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+      <span class="text-[16px] font-medium text-white tracking-[.42px] whitespace-nowrap">Vuahem <span class="text-cool-c1 font-mono text-[13px] font-normal">vuahem.lol</span></span>
+    </div>
+    <nav class="hidden lg:flex items-center gap-7 text-[16px] text-white/90" aria-label="Điều hướng chính">
+      <a href="#scanner" class="py-2.5 hover:text-white">Tra cứu thử</a>
+      <a href="#how" class="py-2.5 hover:text-white">Cách hoạt động</a>
+      <a href="#pricing" class="py-2.5 hover:text-white">Bảng giá</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="#contact" class="btn-pill btn-out-dark !py-3 !px-4 text-[14px] sm:!px-6 whitespace-nowrap">Dùng thử</a>
+      <button id="menuBtn" class="lg:hidden p-3 min-h-[44px] min-w-[44px] text-white" aria-label="Mở menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileNav" hidden class="lg:hidden pb-4 flex flex-col gap-1 text-[15px] text-white/90 border-t border-line-dark pt-3">
+    <a href="#scanner" class="py-3 px-1">Tra cứu thử</a>
+    <a href="#how" class="py-3 px-1">Cách hoạt động</a>
+    <a href="#pricing" class="py-3 px-1">Bảng giá</a>
+    <a href="#contact" class="py-3 px-1">Gửi kỳ hóa đơn để chạy thử</a>
+  </div>
+</div>
+</header>
+
+<main id="main">
+
+<!-- HERO & SIGNALS -->
+<section id="signals" class="bg-black pt-16 pb-20 lg:pt-24 lg:pb-28">
+<div class="max-w-[1440px] mx-auto px-5 lg:px-8">
+  <div class="max-w-[960px]">
+    <span class="tag-shade">Rà soát thuế GTGT đầu vào</span>
+    <h1 class="dsp mt-5 text-[36px] leading-[1.05] tracking-[0.4px] sm:text-[52px] sm:leading-[1.02] sm:tracking-[1.2px] lg:text-[70px] lg:leading-[1.02] lg:tracking-[1.8px] text-white">
+      Rà soát rủi ro hóa đơn<br class="hidden lg:block"> trước khi nộp tờ khai
+    </h1>
+    <p class="text-[17px] font-medium leading-[1.55] text-white/85 mt-5 max-w-[680px]">
+      Đối chiếu trạng thái người bán, ngày lập hóa đơn và chứng từ thanh toán. Phát hiện sớm hóa đơn rủi ro trước kỳ kê khai thuế.
+    </p>
+    <div class="flex flex-wrap items-center gap-4 sm:gap-6 mt-8">
+      <a href="#contact" class="btn-pill btn-out-dark">Gửi kỳ hóa đơn để chạy thử →</a>
+      <a href="#scanner" class="inline-block py-3 text-[16px] text-white/90 underline decoration-white/40 underline-offset-4">Xem 3 tình huống mẫu</a>
+    </div>
+  </div>
+
+  <!-- EVIDENCE: 2 cols, equal height -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 mt-14 lg:mt-16 items-stretch">
+    <!-- col 1: mock dossier (visual e-invoice inspection) -->
+    <div class="lg:col-span-7 order-2 lg:order-1">
+      <div class="frame-dark p-5 sm:p-6 break-any h-full flex flex-col justify-between">
+        <div>
+          <!-- Header Bar with inspection status -->
+          <div class="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-line-dark">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+              <span class="font-mono text-[12px] text-cool-mint">BẢN THỂ HIỆN HÓA ĐƠN ĐIỆN TỬ</span>
+            </div>
+            <span class="px-2.5 py-0.5 rounded font-mono text-[10px] bg-white text-black font-semibold">CẦN XEM LẠI</span>
+          </div>
+
+          <!-- Document Box looking like an authentic e-invoice document -->
+          <div class="bg-[#12181b] border border-line-dark rounded-xl p-4 text-[12px] font-mono space-y-3">
+            <!-- Invoice Meta Header -->
+            <div class="flex flex-wrap justify-between items-center gap-2 pb-2.5 border-b border-line-dark text-cool-c3 text-[11.5px]">
+              <div>Ký hiệu: <span class="text-white font-semibold">1C26TAA</span> · Số: <span class="text-white font-semibold">0028910</span></div>
+              <div>Ngày lập: <span class="text-white font-semibold">14/09/2026</span> <span class="text-cool-c1 bg-[#1e2c31] px-1.5 py-0.5 rounded text-[10px] ml-1">Sau ngày đóng MST</span></div>
+            </div>
+
+            <!-- Seller Info with highlighted warning -->
+            <div class="space-y-1">
+              <div class="text-cool-c3 text-[11px] uppercase tracking-wider">Người bán:</div>
+              <div class="text-white font-medium">CÔNG TY TNHH PHƯƠNG ĐÔNG (minh họa)</div>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="text-cool-c1">MST: 0317892000</span>
+                <span class="bg-[#1e2c31] text-white border border-line-dark px-2 py-0.5 rounded text-[10.5px]">⚠️ Ngừng hoạt động (TCT 10/09)</span>
+              </div>
+            </div>
+
+            <!-- Item Table -->
+            <div class="border border-line-dark rounded-lg overflow-hidden text-[11px]">
+              <div class="bg-[#1e2c31]/60 px-3 py-1.5 flex justify-between text-cool-c3 font-semibold">
+                <span>HÀNG HÓA / DỊCH VỤ</span>
+                <span>THÀNH TIỀN</span>
+              </div>
+              <div class="px-3 py-2 flex justify-between items-center bg-[#0a0a0a]/50 border-t border-line-dark">
+                <span class="text-white">Linh kiện vi mạch X-10 (20 bộ)</span>
+                <span class="text-white font-mono">134.444.444đ</span>
+              </div>
+              <div class="px-3 py-1.5 flex justify-between items-center bg-[#1e2c31]/30 border-t border-line-dark text-[10.5px] text-cool-c3">
+                <span>Thuế GTGT (8%)</span>
+                <span>10.755.556đ</span>
+              </div>
+              <div class="px-3 py-2 flex justify-between items-center bg-[#0a0a0a] border-t border-line-dark font-medium">
+                <span class="text-white">Tổng thanh toán:</span>
+                <span class="text-white font-mono text-[12px] font-semibold">145.200.000đ</span>
+              </div>
+            </div>
+
+            <!-- Payment mode warning flag -->
+            <div class="p-2.5 rounded-lg bg-[#1e2c31]/50 border border-line-dark flex items-center justify-between gap-2 text-[11.5px]">
+              <div class="flex items-center gap-1.5 text-white">
+                <span>⚠️ Hình thức: Tiền mặt</span>
+              </div>
+              <span class="text-cool-c1 text-[10.5px] font-mono">Thiếu UNC ngân hàng (> 20M)</span>
+            </div>
+          </div>
+
+          <!-- Audit Decision Pill -->
+          <div class="mt-3.5 p-3 rounded-lg bg-[#1e2c31]/40 border border-line-dark flex items-center justify-between text-[12px]">
+            <span class="text-white font-semibold flex items-center gap-1.5">
+              <span>⛔</span> Khuyến nghị: Tạm giữ, chưa kê khai
+            </span>
+            <span class="text-cool-mint text-[11px] font-mono">3 cờ đỏ</span>
+          </div>
+        </div>
+
+        <p class="font-mono text-[11px] text-cool-c2 pt-3 mt-4 border-t border-line-dark leading-relaxed">
+          Dữ liệu minh họa. Cảnh báo kỹ thuật, không thay thế kết luận của cơ quan thuế.
+        </p>
+      </div>
+    </div>
+
+    <!-- col 2: 3 signal cards -->
+    <div class="lg:col-span-5 order-1 lg:order-2 flex flex-col justify-between gap-3.5">
+      <div class="card-dark p-5">
+        <div class="eyebrow text-cool-mint mb-1">Tín hiệu 01</div>
+        <h3 class="text-[16px] text-white font-medium mb-1">Trạng thái người bán</h3>
+        <p class="text-[14px] text-white/75 leading-[1.5]">Doanh nghiệp ngừng hoạt động hoặc đóng mã số thuế trước ngày xuất hóa đơn.</p>
+      </div>
+      <div class="card-dark p-5">
+        <div class="eyebrow text-cool-mint mb-1">Tín hiệu 02</div>
+        <h3 class="text-[16px] text-white font-medium mb-1">Thời điểm phát hành</h3>
+        <p class="text-[14px] text-white/75 leading-[1.5]">Hóa đơn xuất sau ngày cơ quan thuế công bố trạng thái ngừng kinh doanh.</p>
+      </div>
+      <div class="card-dark p-5">
+        <div class="eyebrow text-cool-mint mb-1">Tín hiệu 03</div>
+        <h3 class="text-[16px] text-white font-medium mb-1">Chứng từ thanh toán</h3>
+        <p class="text-[14px] text-white/75 leading-[1.5]">Khoản chi trên ngưỡng quy định thiếu ủy nhiệm chi khớp tên người nhận.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SCANNER DEMO -->
+<section id="scanner" class="bg-black pt-20 pb-24 lg:pt-24 lg:pb-28 border-t border-line-dark">
+<div class="max-w-[1440px] mx-auto px-5 lg:px-8">
+  <div class="max-w-[720px] mb-10">
+    <div class="eyebrow text-cool-mint mb-3">Tra cứu thử · Dữ liệu minh họa</div>
+    <h2 class="dsp-lg text-[32px] leading-[1.08] text-white sm:text-[46px] lg:text-[54px]">Thử nghiệm 3 tình huống thực tế</h2>
+    <p class="text-[15px] text-white/75 leading-[1.5] mt-3">
+      Bấm chọn kịch bản mẫu bên dưới để xem hệ thống đối chiếu và đưa ra cảnh báo.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
+    <div class="lg:col-span-5">
+      <div class="frame-dark p-5 lg:p-6">
+        <label for="mstInput" class="block text-[15px] text-white/85 mb-2">Mã số thuế kiểm tra</label>
+        <input id="mstInput" inputmode="numeric" maxlength="10" placeholder="0301234567"
+               class="w-full px-3 py-2.5 rounded-lg bg-[#0a0a0a] border border-line-dark text-[15px] font-mono text-white placeholder:text-cool-c2" autocomplete="off">
+
+        <div class="mt-4 flex flex-col gap-2 text-[13px]">
+          <button data-demo="clean" class="demoBtn text-left px-4 py-2.5 rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,.28)] min-h-[44px] flex items-center justify-between">
+            <span>1. Hóa đơn hợp lệ</span>
+            <span class="text-cool-mint font-mono text-[11px]">ĐẠT</span>
+          </button>
+          <button data-demo="risky" class="demoBtn text-left px-4 py-2.5 rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,.28)] min-h-[44px] flex items-center justify-between">
+            <span>2. Người bán ngừng hoạt động</span>
+            <span class="text-white font-mono text-[11px] bg-white/20 px-1.5 py-0.5 rounded">RỦI RO</span>
+          </button>
+          <button data-demo="cash" class="demoBtn text-left px-4 py-2.5 rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,.28)] min-h-[44px] flex items-center justify-between">
+            <span>3. Thiếu ủy nhiệm chi</span>
+            <span class="text-cool-c1 font-mono text-[11px]">CẦN XEM</span>
+          </button>
+        </div>
+
+        <button id="runScan" class="btn-pill btn-out-dark mt-5 w-full !px-4">Chạy kiểm tra</button>
+
+        <div class="mt-5 pt-4 border-t border-line-dark flex items-center justify-between text-[14px]">
+          <span class="text-cool-c1">Mức độ rủi ro</span>
+          <span id="scoreLabel" class="font-mono font-medium text-white">—</span>
+        </div>
+        <div class="h-1.5 rounded-full bg-white/15 overflow-hidden mt-2"><div id="scoreBar" class="h-full w-0 bg-white transition-all duration-500"></div></div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-7">
+      <div class="h-full min-h-[280px] frame-dark p-5 lg:p-6 relative overflow-hidden flex flex-col justify-between">
+        <div id="scanLine" hidden class="absolute inset-x-0 top-0 h-px bg-white/45"></div>
+        <div id="scanIdle" class="my-auto text-center py-8">
+          <div class="font-mono text-[13px] text-cool-mint mb-2">Chưa có dữ liệu</div>
+          <p class="text-[14px] text-white/75 max-w-sm mx-auto leading-[1.5]">Chọn một tình huống mẫu ở cột bên trái để xem kết quả phân tích tức thì.</p>
+        </div>
+        <div id="scanOut" hidden class="space-y-2.5 font-mono text-[12.5px] leading-[1.6]"></div>
+        <p class="micro text-cool-c3 pt-4 border-t border-line-dark leading-[1.5] mt-4">Dữ liệu minh họa cho mục đích demo. Không dùng để kê khai thuế.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══════════ TRANSACTIONAL TRACK: cream / white / aloe ══════════ -->
+
+<!-- HOW IT WORKS -->
+<section id="how" class="py-12 lg:py-16 bg-cream border-b border-line">
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+  <div class="max-w-[720px] mb-8">
+    <div class="eyebrow text-shade-60 mb-2">Quy trình</div>
+    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black">4 bước rà soát trước kỳ kê khai</h2>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative">
+    <div class="card-light p-5 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="eyebrow text-shade-50">Bước 01</span>
+          <span class="text-[11px] font-mono bg-cream px-2 py-0.5 rounded border border-line">XML / PDF</span>
+        </div>
+        <h3 class="h-md text-black mb-1.5">Tải hóa đơn</h3>
+        <p class="text-[14px] leading-[1.5] text-black">Đọc file XML/HTML từ nhà cung cấp hóa đơn điện tử bạn đang dùng.</p>
+      </div>
+      <div class="mt-4 pt-3 border-t border-line text-[12px] text-shade-50 flex items-center gap-1.5">
+        <span>●</span> Nạp dữ liệu thô
+      </div>
+    </div>
+    <div class="card-light p-5 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="eyebrow text-shade-50">Bước 02</span>
+          <span class="text-[11px] font-mono bg-cream px-2 py-0.5 rounded border border-line">Dữ liệu TCT</span>
+        </div>
+        <h3 class="h-md text-black mb-1.5">Quét người bán</h3>
+        <p class="text-[14px] leading-[1.5] text-black">Đối chiếu MST với danh sách công khai doanh nghiệp ngừng hoạt động.</p>
+      </div>
+      <div class="mt-4 pt-3 border-t border-line text-[12px] text-shade-50 flex items-center gap-1.5">
+        <span>●</span> Kiểm tra pháp lý
+      </div>
+    </div>
+    <div class="card-light p-5 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="eyebrow text-shade-50">Bước 03</span>
+          <span class="text-[11px] font-mono bg-cream px-2 py-0.5 rounded border border-line">Sao kê UNC</span>
+        </div>
+        <h3 class="h-md text-black mb-1.5">Khớp chứng từ</h3>
+        <p class="text-[14px] leading-[1.5] text-black">Đối chiếu ủy nhiệm chi ngân hàng và phiếu nhập kho theo giao dịch.</p>
+      </div>
+      <div class="mt-4 pt-3 border-t border-line text-[12px] text-shade-50 flex items-center gap-1.5">
+        <span>●</span> Đối soát dòng tiền
+      </div>
+    </div>
+    <div class="card-light p-5 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="eyebrow text-shade-50">Bước 04</span>
+          <span class="text-[11px] font-mono bg-cream px-2 py-0.5 rounded border border-line">Xuất hồ sơ</span>
+        </div>
+        <h3 class="h-md text-black mb-1.5">Nhận cảnh báo</h3>
+        <p class="text-[14px] leading-[1.5] text-black">Xuất danh sách hóa đơn cần xem xét kèm lý do trước khi lập tờ khai.</p>
+      </div>
+      <div class="mt-4 pt-3 border-t border-line text-[12px] text-shade-50 flex items-center gap-1.5">
+        <span>●</span> Sẵn sàng kê khai
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5 p-4 rounded-xl bg-pistachio text-[13.5px] text-black leading-[1.5]">
+    <strong>Lưu ý:</strong> Hệ thống đưa ra cảnh báo kỹ thuật hỗ trợ kế toán soát xét, không thay thế nghĩa vụ kê khai thuế của doanh nghiệp.
+  </div>
+</div>
+</section>
+
+<!-- ROI CALCULATOR -->
+<section id="roi" class="py-12 lg:py-16 bg-white border-b border-line">
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <div class="lg:col-span-5">
+      <div class="eyebrow text-shade-60 mb-2">Ước tính thiệt hại</div>
+      <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black">Tránh tiền phạt & chậm nộp thuế</h2>
+      <p class="text-[15px] mt-4 leading-[1.5] text-black">
+        Tránh phạt 20% trên số thuế khai thiếu và tiền chậm nộp 0,03%/ngày theo Nghị định 125/2020/NĐ-CP khi hóa đơn đầu vào bị loại trừ.
+      </p>
+    </div>
+
+    <div class="lg:col-span-7">
+      <div class="card-light p-5 lg:p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label for="invRange" class="flex justify-between text-[14px] text-black mb-2">
+              <span>Hóa đơn đầu vào / tháng</span><span id="invLabel" class="font-mono font-medium">800</span>
+            </label>
+            <input id="invRange" type="range" min="100" max="5000" step="50" value="800" class="w-full">
+            <div class="flex flex-wrap gap-2 mt-3 text-[13px]">
+              <button class="pres px-3.5 py-2 rounded-full bg-white text-black min-h-[44px] shadow-[0_0_0_1px_#e4e4e7]" data-t="invRange" data-v="200">200</button>
+              <button class="pres px-3.5 py-2 rounded-full bg-white text-black min-h-[44px] shadow-[0_0_0_1px_#e4e4e7]" data-t="invRange" data-v="800">800</button>
+              <button class="pres px-3.5 py-2 rounded-full bg-white text-black min-h-[44px] shadow-[0_0_0_1px_#e4e4e7]" data-t="invRange" data-v="2000">2.000</button>
+              <button class="pres px-3.5 py-2 rounded-full bg-white text-black min-h-[44px] shadow-[0_0_0_1px_#e4e4e7]" data-t="invRange" data-v="5000">5.000</button>
+            </div>
+          </div>
+          <div>
+            <label for="flagRange" class="flex justify-between text-[14px] text-black mb-2">
+              <span>Tỷ lệ nghi ngờ</span><span id="flagLabel" class="font-mono font-medium">2%</span>
+            </label>
+            <input id="flagRange" type="range" min="0.5" max="8" step="0.5" value="2" class="w-full">
+            <p class="text-[13px] text-shade-50 mt-3 leading-[1.5]">Ước tính theo tỷ lệ lựa chọn để hỗ trợ kế toán lên kế hoạch kiểm tra.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-5 border-t border-line">
+          <div>
+            <div class="eyebrow text-shade-50 mb-1">Cần xem lại</div>
+            <div id="outCount" class="h-xl text-black">16</div>
+            <div class="text-[12.5px] text-shade-50 mt-0.5">hóa đơn nghi ngờ</div>
+          </div>
+          <div>
+            <div class="eyebrow text-shade-50 mb-1">Tiết kiệm</div>
+            <div id="outHours" class="h-xl text-black">20 giờ</div>
+            <div class="text-[12.5px] text-shade-50 mt-0.5">thời gian soát xét</div>
+          </div>
+          <div>
+            <div class="eyebrow text-shade-50 mb-1">Xem tiếp</div>
+            <a href="#pricing" class="inline-block py-1.5 h-xl text-black underline decoration-black/30">Bảng giá →</a>
+            <div class="text-[12.5px] text-shade-50 mt-0.5">chỉ từ 490.000đ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- SECURITY -->
+<section id="security" class="py-12 lg:py-16 bg-cream border-b border-line">
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+  <div class="max-w-[720px] mb-8">
+    <div class="eyebrow text-shade-60 mb-2">Dữ liệu</div>
+    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black">Bảo mật & lưu trữ tại Việt Nam</h2>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div class="card-light p-5">
+      <h3 class="h-md text-black mb-1.5">Mã hóa chuẩn cao</h3>
+      <p class="text-[14px] leading-[1.5] text-black">AES-256 khi lưu trữ, TLS 1.3 khi truyền tải. Khóa mã hóa quản lý độc lập.</p>
+    </div>
+    <div class="card-light p-5">
+      <h3 class="h-md text-black mb-1.5">Máy chủ trong nước</h3>
+      <p class="text-[14px] leading-[1.5] text-black">Đặt tại Hà Nội và TP.HCM. Không chuyển dữ liệu khách hàng ra nước ngoài.</p>
+    </div>
+    <div class="card-light p-5">
+      <h3 class="h-md text-black mb-1.5">Quyền kiểm soát</h3>
+      <p class="text-[14px] leading-[1.5] text-black">Xuất báo cáo Excel/CSV bất cứ lúc nào. Xóa dữ liệu vĩnh viễn theo yêu cầu.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="py-12 lg:py-16 bg-white border-b border-line">
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+  <div class="max-w-[720px] mb-8">
+    <div class="eyebrow text-shade-60 mb-2">Bảng giá</div>
+    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black">Rõ chi phí, linh hoạt theo quy mô</h2>
+    <p class="text-[14.5px] mt-2 leading-[1.5] text-shade-50">Vượt gói: 400đ/hóa đơn. Không bị chặn xử lý giữa kỳ. Giá chưa bao gồm VAT.</p>
+  </div>
+
+  <div class="snap-row md:grid md:grid-cols-3 gap-4 md:gap-6 items-stretch">
+    <!-- Tier 1 -->
+    <div class="flex flex-col card-light p-6 lg:p-7">
+      <div class="h-xl text-black mb-1">Cơ bản</div>
+      <div class="text-[13.5px] text-shade-50 mb-4">Doanh nghiệp dưới 500 hóa đơn/tháng.</div>
+      <div class="flex items-baseline gap-1 mb-4">
+        <span class="dsp-lg text-[40px] leading-[1.05] text-black lg:text-[48px]">490.000đ</span><span class="text-[13px] text-shade-50">/tháng</span>
+      </div>
+      <ul class="space-y-2 text-[14px] flex-1 text-black">
+        <li>✓ 500 hóa đơn đầu vào / tháng</li>
+        <li>✓ Quét trạng thái MST người bán</li>
+        <li>✓ Cảnh báo thiếu ủy nhiệm chi</li>
+        <li>✓ Xuất báo cáo Excel</li>
+        <li>✓ Hỗ trợ email trong 24h làm việc</li>
+      </ul>
+      <a href="#contact" class="mt-6 btn-pill btn-out-light">Dùng thử 14 ngày</a>
+    </div>
+
+    <!-- Tier 2 -->
+    <div class="flex flex-col p-6 lg:p-7 bg-aloe rounded-xl relative text-black">
+      <span class="absolute -top-3 left-8 tag-mint font-medium">Khuyên dùng</span>
+      <div class="h-xl text-black mb-1">Chuyên nghiệp</div>
+      <div class="text-[13.5px] text-black/70 mb-4">Thương mại, sản xuất nhiều nhà cung cấp.</div>
+      <div class="flex items-baseline gap-1 mb-4">
+        <span class="dsp-lg text-[40px] leading-[1.05] text-black lg:text-[48px]">1.490.000đ</span><span class="text-[13px] text-black/70">/tháng</span>
+      </div>
+      <ul class="space-y-2 text-[14px] flex-1 text-black">
+        <li>✓ 3.000 hóa đơn / tháng</li>
+        <li>✓ Đối chiếu file sao kê ngân hàng</li>
+        <li>✓ Xuất file cho MISA, FAST, Bravo</li>
+        <li>✓ Cảnh báo Zalo & email</li>
+        <li>✓ Hỗ trợ ưu tiên trong ngày</li>
+      </ul>
+      <a href="#contact" class="mt-6 btn-pill btn-aloe">Dùng thử miễn phí</a>
+    </div>
+
+    <!-- Tier 3 -->
+    <div class="flex flex-col card-light p-6 lg:p-7">
+      <div class="h-xl text-black mb-1">Doanh nghiệp lớn</div>
+      <div class="text-[13.5px] text-shade-50 mb-4">Chuỗi bán lẻ, tổng công ty, FDI.</div>
+      <div class="flex items-baseline gap-1 mb-4">
+        <span class="dsp-lg text-[40px] leading-[1.05] text-black lg:text-[48px]">Theo nhu cầu</span>
+      </div>
+      <ul class="space-y-2 text-[14px] flex-1 text-black">
+        <li>✓ Không giới hạn số lượng hóa đơn</li>
+        <li>✓ Tùy biến kết nối ERP (SAP, Oracle)</li>
+        <li>✓ Đào tạo và hỗ trợ trực tiếp</li>
+        <li>✓ Thỏa thuận điều khoản dịch vụ riêng</li>
+      </ul>
+      <a href="#contact" class="mt-6 btn-pill btn-out-light">Liên hệ tư vấn</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section id="integrations" class="py-12 lg:py-16 bg-cream border-b border-line">
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+  <div class="max-w-[720px] mb-8">
+    <div class="eyebrow text-shade-60 mb-2">Tương thích</div>
+    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black">Kết nối với công cụ bạn đang dùng</h2>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div class="card-light p-5">
+      <div class="eyebrow text-shade-50 mb-2">Đầu vào</div>
+      <h3 class="h-md text-black mb-1">Hóa đơn điện tử</h3>
+      <p class="text-[14px] leading-[1.5] text-black">Hỗ trợ file XML/HTML từ Viettel, VNPT, MISA, BKAV, FPT.</p>
+    </div>
+    <div class="card-light p-5">
+      <div class="eyebrow text-shade-50 mb-2">Thanh toán</div>
+      <h3 class="h-md text-black mb-1">Sao kê ngân hàng</h3>
+      <p class="text-[14px] leading-[1.5] text-black">Đối chiếu file sao kê ủy nhiệm chi từ mọi ngân hàng.</p>
+    </div>
+    <div class="card-light p-5">
+      <div class="eyebrow text-shade-50 mb-2">Đầu ra</div>
+      <h3 class="h-md text-black mb-1">Phần mềm kế toán</h3>
+      <p class="text-[14px] leading-[1.5] text-black">Xuất kết quả rà soát sang MISA, FAST, Bravo, SAP.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CONTACT / FINAL CTA -->
+<section id="contact" class="py-14 lg:py-16 bg-white">
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+  <div class="card-light p-6 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+    <div class="lg:col-span-7">
+      <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black">Chạy thử miễn phí một kỳ hóa đơn</h2>
+      <p class="text-[15px] text-black mt-3 leading-[1.5]">Gửi 50–100 hóa đơn gần nhất. Nhận lại danh sách rủi ro kèm lý do trong 2 ngày làm việc mà không cần kết nối hệ thống.</p>
+    </div>
+    <div class="lg:col-span-5 space-y-3 text-[14px] text-black">
+      <div class="p-4 rounded-lg bg-cream border border-line">Email: <span class="font-mono">demo@vuahem.lol</span> · Phản hồi trong 1 ngày làm việc.</div>
+      <a href="mailto:demo@vuahem.lol?subject=Demo%20Vuahem" class="btn-pill btn-solid w-full">Gửi kỳ hóa đơn để chạy thử</a>
+    </div>
+  </div>
+</div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-black text-white py-14">
+<div class="max-w-[1200px] mx-auto px-5 lg:px-8">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-8 border-b border-line-dark">
+    <div class="md:col-span-6">
+      <div class="text-[16px] font-medium text-white mb-2 tracking-[.42px]">Vuahem <span class="text-cool-c1 font-mono text-[13px]">vuahem.lol</span></div>
+      <p class="text-[14px] leading-[1.5] text-white/80">Công cụ rà soát rủi ro hóa đơn đầu vào cho doanh nghiệp Việt Nam.</p>
+      <p class="text-[12.5px] mt-3 leading-[1.5] text-cool-c1">Bản thử nghiệm kỹ thuật trên tên miền vuahem.lol. Không thay thế kết luận cơ quan thuế. Thông tin pháp nhân và điều khoản dịch vụ công bố đầy đủ trước khi thu phí theo Nghị định 52/2013/NĐ-CP.</p>
+    </div>
+    <div class="md:col-span-3">
+      <div class="eyebrow text-white mb-3">Liên kết</div>
+      <div class="space-y-1 text-[14px]">
+        <a href="#scanner" class="block py-2 text-white">Tra cứu thử</a>
+        <a href="#how" class="block py-2 text-cool-c1">Cách hoạt động</a>
+        <a href="#pricing" class="block py-2 text-cool-c1">Bảng giá</a>
+      </div>
+    </div>
+    <div class="md:col-span-3">
+      <div class="eyebrow text-white mb-3">Pháp lý</div>
+      <div class="space-y-1 text-[13px] text-cool-c1">
+        <a href="#security" class="block py-2 text-white">Bảo mật dữ liệu</a>
+        <p class="leading-[1.5]">Điều khoản gửi theo yêu cầu qua email.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pt-6 flex flex-col sm:flex-row justify-between gap-3 text-[13px] text-cool-c2">
+    <span>© 2026 Vuahem (vuahem.lol). Trang demo, dữ liệu minh họa.</span>
+    <span class="font-mono">Made in Hanoi</span>
+  </div>
+</div>
+</footer>
+
+<script>
+document.getElementById('menuBtn').addEventListener('click',function(){
+  var n=document.getElementById('mobileNav');var o=n.hidden;n.hidden=!o;this.setAttribute('aria-expanded',String(!o));
+});
+document.querySelectorAll('#mobileNav a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('mobileNav').hidden=true;document.getElementById('menuBtn').setAttribute('aria-expanded','false');}));
+
+const DEMOS={
+  clean:{mst:'0004512398',score:90,label:'Thấp (Hợp lệ)',rows:[
+    ['✓','MST 0004512398: Đang hoạt động, không thuộc danh sách cảnh báo.'],
+    ['✓','Ủy nhiệm chi khớp tên đơn vị thụ hưởng và giá trị hóa đơn.'],
+    ['✓','Hồ sơ chứng từ đầy đủ điều kiện kê khai thuế GTGT.']]},
+  risky:{mst:'0009999999',score:20,label:'Rất cao (Ngừng hoạt động)',rows:[
+    ['!','Người bán ngừng hoạt động trước thời điểm xuất hóa đơn.'],
+    ['!','Hóa đơn phát hành sau ngày cơ quan thuế ra thông báo.'],
+    ['!','Khuyến nghị: Tạm dừng kê khai để xác minh lại.']]},
+  cash:{mst:'0007712345',score:50,label:'Trung bình (Thiếu UNC)',rows:[
+    ['✓','Mã số thuế bên bán đang hoạt động bình thường.'],
+    ['!','Khoản thanh toán trên ngưỡng quy định thiếu chứng từ thanh toán ngân hàng.'],
+    ['!','Khuyến nghị: Bổ sung ủy nhiệm chi trước kỳ quyết toán.']]}
+};
+function revealResult(){if(window.innerWidth<1024){document.getElementById('scanOut').scrollIntoView({behavior:'smooth',block:'center'});}}
+const inp=document.getElementById('mstInput'),out=document.getElementById('scanOut'),idle=document.getElementById('scanIdle'),
+      line=document.getElementById('scanLine'),bar=document.getElementById('scoreBar'),scoreLabel=document.getElementById('scoreLabel');
+
+function tagFor(c){return c==='✓'?'ĐẠT':'CẢNH BÁO';}
+function run(demoKey,mst){
+  const key=demoKey||(mst==='0009999999'?'risky':mst==='0007712345'?'cash':'clean');
+  const d=DEMOS[key];
+  inp.value=d.mst;
+  idle.hidden=true;
+  out.hidden=false;
+  out.innerHTML='';
+  d.rows.forEach(r=>{
+    const pass=(r[0]==='✓');
+    out.innerHTML+='<div class="rounded-lg p-2.5 flex gap-2.5 items-baseline '+(pass?'bg-[#1e2c31]/40 border border-line-dark':'bg-white')+'">'+
+      '<span class="shrink-0 px-2 py-0.5 rounded font-mono text-[10px] '+(pass?'text-white/80':'bg-black text-white font-semibold')+'">'+tagFor(r[0])+'</span>'+
+      '<span class="'+(pass?'text-white/85':'text-black font-medium')+'">'+r[1]+'</span></div>';
+  });
+  bar.style.width=d.score+'%';
+  scoreLabel.textContent=d.label;
+  revealResult();
+}
+document.querySelectorAll('.demoBtn').forEach(b=>b.addEventListener('click',()=>run(b.dataset.demo)));
+document.getElementById('runScan').addEventListener('click',()=>run(null,(inp.value||'').replace(/\D/g,'')));
+inp.addEventListener('keydown',e=>{if(e.key==='Enter')run(null,(inp.value||'').replace(/\D/g,''));});
+
+const inv=document.getElementById('invRange'),fl=document.getElementById('flagRange');
+function calc(){
+  const n=+inv.value,p=+fl.value,flag=Math.max(1,Math.round(n*p/100));
+  const saved=Math.max(0,Math.round((n*2-flag*25)/60));
+  document.getElementById('invLabel').textContent=n.toLocaleString('vi-VN');
+  document.getElementById('flagLabel').textContent=p.toLocaleString('vi-VN')+'%';
+  document.getElementById('outCount').textContent=flag.toLocaleString('vi-VN');
+  document.getElementById('outHours').textContent=saved+' giờ';
+}
+document.querySelectorAll('.pres').forEach(b=>b.addEventListener('click',()=>{const t=document.getElementById(b.dataset.t);t.value=b.dataset.v;calc();}));
+[inv,fl].forEach(r=>r.addEventListener('input',calc));calc();
+</script>
+</body>
+</html>
