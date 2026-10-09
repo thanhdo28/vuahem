@@ -1,61 +1,70 @@
 # Vuahem (vuahem.lol)
 
-> Rà soát rủi ro hóa đơn đầu vào trước khi nộp tờ khai thuế GTGT.
+> Pre-filing input VAT and tax invoice risk audit platform.
 
-Vuahem là giải pháp đối soát và phát hiện rủi ro hóa đơn điện tử đầu vào dành cho Kế toán trưởng, CFO và chủ doanh nghiệp tại Việt Nam:
-1. **Kiểm tra trạng thái người bán**: Đối chiếu tức thì với danh mục NNT ngừng hoạt động, bỏ địa chỉ kinh doanh, đóng MST từ cơ quan thuế.
-2. **So khớp thời điểm phát hành**: Cảnh báo các hóa đơn xuất sau ngày cơ quan thuế ra thông báo vi phạm.
-3. **3-Way Reconciliation**: Đối chiếu 3 chiều giữa Hóa đơn XML ↔ Sao kê Ngân hàng (Ủy nhiệm chi) ↔ Phiếu nhập kho/Hợp đồng. Phát hiện chi tiền mặt vượt ngưỡng quy định.
+Vuahem is an automated pre-filing invoice risk detection engine for Chief Accountants, CFOs, and business owners:
+1. **Seller Tax Status Screening**: Real-time cross-referencing against statutory blacklists of suspended, closed, or relocated vendors.
+2. **Issuance Timing Verification**: Flags invoices issued after official business suspension dates.
+3. **3-Way Reconciliation**: Automated 3-way matching across XML/PDF Invoices ↔ Bank Statement Feeds (Payment Orders) ↔ Warehouse Receipts. Detects cash payments exceeding statutory thresholds.
 
 ---
 
-## Kiến Trúc Hệ Thống (3-Way Audit Engine)
+## 3-Way Audit Engine Architecture
 
 ![Vuahem Architecture](assets/vuahem_diagram.png)
 
 ---
 
-## Cấu Trúc Dự Án
+## Preview
 
-Dự án được thiết kế dạng **single-file web page** không phụ thuộc build tooling phức tạp, tối ưu hóa tốc độ tải và khả năng triển khai:
-
-- `index.html`: Landing page hoàn chỉnh (thiết kế theo ngôn ngữ cinematic black & cream/mint của Shopifi, kiểu chữ Grotesk nét thanh, hệ thống nút bấm dạng pill).
-- `check_design.py`: Bộ kiểm tra tuân thủ thiết kế (9 tiêu chí: pill button geometry, canvas discipline, font scale, ss03, touch target floors).
-- `verify.py`: Bộ kiểm thử nội dung và pháp lý (14 tiêu chí: quét từ cấm/hứa hẹn sai, kiểm tra liên kết anchor, đối soát logic demo).
-- `BUILD_LOG.md`: Nhật ký phát triển và các vòng tự phản biện (self-critique) cùng mô hình Claude Opus & GPT-6.1-sol.
-- `assets/`: Sơ đồ kiến trúc và ảnh xem trước giao diện.
+![Landing Page Preview](assets/preview.png)
 
 ---
 
-## Chạy Thử Tại Local
+## Project Structure
 
-Không cần cài đặt npm hay build step:
+Designed as a high-performance **single-file web application** with zero build dependencies:
+
+- `index.html`: Complete landing page (Shopifi-inspired cinematic black & cream/mint design system, thin Grotesk display typography, and 100% pill-shaped controls).
+- `check_design.py`: Automated design system conformance gate (9 mechanical checks: pill button geometry, canvas discipline, font scale, ss03, touch target floors).
+- `verify.py`: Content and legal integrity gate (17 checks: banned claims scan, anchor integrity, interactive demo sanity).
+- `BUILD_LOG.md`: Comprehensive engineering log and self-critique rounds with Claude Opus & GPT-6.1-sol.
+- `assets/`: Architecture diagram and page previews.
+
+---
+
+## Local Development
+
+No Node.js or build tools required:
 
 ```bash
-# Cách 1: Mở trực tiếp bằng trình duyệt
+# Option 1: Open directly in browser
 open index.html
 
-# Cách 2: Chạy qua Python HTTP server
+# Option 2: Run via local HTTP server
 python3 -m http.server 8000
-# Truy cập: http://localhost:8000
+# Visit: http://localhost:8000
 ```
 
 ---
 
-## Kiểm Tra Tự Động (Quality Gates)
+## Automated Quality Gates
 
-Chạy các bài kiểm tra tự động trước khi triển khai:
+Run checks prior to deployment:
 
 ```bash
-# Kiểm tra quy chuẩn thiết kế
+# Verify design system compliance
 python3 check_design.py index.html
 
-# Kiểm tra tính toàn vẹn nội dung & pháp lý
+# Verify content, anchors & disclaimers
 python3 verify.py index.html
 ```
 
 ---
 
-## Bản Quyền & Trách Nhiệm
+## Legal & Entity
 
-© 2026 Vuahem (vuahem.lol). Bản thử nghiệm kỹ thuật. Hệ thống cung cấp cảnh báo kỹ thuật hỗ trợ kế toán soát xét, không thay thế nghĩa vụ và kết luận của cơ quan thuế.
+**Vuahem Technologies Pte. Ltd.**  
+68 Circular Road, #02-01, Singapore 049422  
+
+© 2026 Vuahem Technologies Pte. Ltd. (vuahem.lol). Technical demonstration environment. Automated risk signals do not replace official statutory tax filings or determinations.
