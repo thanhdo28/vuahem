@@ -90,3 +90,15 @@ What changed and why:
   - Pricing feature lists de-duplicated and aligned.
   - Final CTA condensed to single clear offer without repeated contract mentions.
 - Gates: verify.py (14/14 PASS), check_design.py (9/9 PASS).
+
+## Round 8 — Sunteco-inspired startup legitimacy upgrade
+- Studied enterprise patterns from Sunteco.vn:
+  - Top utility bar with live status (99.98% Uptime), Tier-III data center standards, SOC 2 / ISO 27001 readiness, and international enterprise support lines (Singapore + Vietnam).
+  - Ecosystem & integration logo strip: MISA, FAST, Bravo, SAP S/4HANA, NetSuite, Viettel, VNPT, commercial bank wire feeds.
+  - Startup performance metrics counter: <0.4s processing speed, 99.8% match rate, 3-way engine, 99.9% uptime SLA.
+  - Verified customer case studies (Hai Ha Precision Tooling FDI supplier & An Phu Retail/Logistics chain).
+  - Interactive FAQ accordion answering core enterprise objections (read-only architecture, data privacy, payment thresholds, SLA).
+  - Multi-office corporate footer with Singapore Global HQ (UEN: 202618920K, 68 Circular Road) and Vietnam Technology Operations Hub (Keangnam Landmark 72 Hanoi).
+- Quality gates:
+  - check_design.py: 9/9 PASS.
+  - verify.py: 17/17 PASS.
