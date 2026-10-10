@@ -53,11 +53,17 @@ input[type=range]{accent-color:#000}
 :focus-visible{outline:2px solid #fff;outline-offset:2px}
 details summary span.ind{transition:transform .2s}
 details[open] summary span.ind{transform:rotate(45deg)}
+/* Bilingual: one source file, two languages. Default EN; <html lang="vi"> shows VI. */
+.i18n>span{display:none}
+html:not([lang="vi"]) .i18n>span[lang="en"]{display:inline}
+html[lang="vi"] .i18n>span[lang="vi"]{display:inline}
+.langBtn{color:inherit}
+.langBtn[aria-current="true"]{color:#fff;background:rgba(255,255,255,.12)}
 </style>
 </head>
 <body class="selection:bg-black selection:text-white">
 
-<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:rounded">Skip to main content</a>
+<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:rounded"><span class="i18n"><span lang="en">Skip to main content</span><span lang="vi">Bỏ qua nội dung chính</span></span></a>
 
 <!-- ══════════ CINEMATIC TRACK: utility bar + nav + hero + signals + scanner ══════════ -->
 
@@ -67,19 +73,24 @@ details[open] summary span.ind{transform:rotate(45deg)}
     <div class="flex items-center gap-4">
       <span class="inline-flex items-center gap-1.5 font-medium">
         <span class="w-1.5 h-1.5 rounded-full bg-aloe animate-pulse"></span>
-        <span class="text-white/90">All Systems Operational · 99.98% Uptime</span>
+        <span class="text-white/90"><span class="i18n"><span lang="en">All Systems Operational · 99.98% Uptime</span><span lang="vi">Toàn hệ thống đang hoạt động · Uptime 99,98%</span></span></span>
       </span>
       <span class="text-white/20">|</span>
-      <span>Tier-III Data Center Architecture</span>
+      <span><span class="i18n"><span lang="en">Tier-III Data Center Architecture</span><span lang="vi">Kiến trúc data center Tier-III</span></span></span>
       <span class="text-white/20">|</span>
-      <span>SOC 2 & ISO 27001 Ready</span>
+      <span><span class="i18n"><span lang="en">SOC 2 & ISO 27001 Ready</span><span lang="vi">Sẵn sàng SOC 2 & ISO 27001</span></span></span>
     </div>
     <div class="flex items-center gap-4">
       <span>Singapore: <strong class="text-white/90">(+65) 6715 8920</strong></span>
       <span class="text-white/20">|</span>
-      <span>Vietnam: <strong class="text-white/90">(+84) 24 7300 8920</strong></span>
+      <span><span class="i18n"><span lang="en">Vietnam:</span><span lang="vi">Việt Nam:</span></span> <strong class="text-white/90">(+84) 24 7300 8920</strong></span>
       <span class="text-white/20">|</span>
-      <a href="#contact" class="hover:text-white transition">Client Portal</a>
+      <span class="flex items-center gap-1" role="group" aria-label="Language / Ngôn ngữ">
+        <button type="button" data-lang="en" class="langBtn px-1.5 py-0.5 rounded hover:bg-white/10" aria-current="true">EN</button>
+        <button type="button" data-lang="vi" class="langBtn px-1.5 py-0.5 rounded hover:bg-white/10" aria-current="false">TIẾNG VIỆT</button>
+      </span>
+      <span class="text-white/20">|</span>
+      <a href="#contact" class="hover:text-white transition"><span class="i18n"><span lang="en">Client Portal</span><span lang="vi">Cổng khách hàng</span></span></a>
     </div>
   </div>
 </div>
@@ -95,27 +106,31 @@ details[open] summary span.ind{transform:rotate(45deg)}
       <span class="text-[16px] font-medium text-white tracking-[.42px] whitespace-nowrap">Vuahem <span class="text-cool-c1 font-mono text-[13px] font-normal">vuahem.lol</span></span>
     </div>
     <nav class="hidden lg:flex items-center gap-7 text-[15px] text-white/90 font-medium" aria-label="Main Navigation">
-      <a href="#scanner" class="py-2.5 hover:text-white">Live Demo</a>
-      <a href="#how" class="py-2.5 hover:text-white">How It Works</a>
-      <a href="#roi" class="py-2.5 hover:text-white">Case Studies</a>
-      <a href="#pricing" class="py-2.5 hover:text-white">Pricing</a>
-      <a href="#faq" class="py-2.5 hover:text-white">FAQ</a>
+      <a href="#scanner" class="py-2.5 hover:text-white"><span class="i18n"><span lang="en">Live Demo</span><span lang="vi">Demo trực tiếp</span></span></a>
+      <a href="#how" class="py-2.5 hover:text-white"><span class="i18n"><span lang="en">How It Works</span><span lang="vi">Cách hoạt động</span></span></a>
+      <a href="#roi" class="py-2.5 hover:text-white"><span class="i18n"><span lang="en">Case Studies</span><span lang="vi">Ca nghiên cứu</span></span></a>
+      <a href="#pricing" class="py-2.5 hover:text-white"><span class="i18n"><span lang="en">Pricing</span><span lang="vi">Bảng giá</span></span></a>
+      <a href="#faq" class="py-2.5 hover:text-white"><span class="i18n"><span lang="en">FAQ</span><span lang="vi">Hỏi &amp; đáp</span></span></a>
     </nav>
     <div class="flex items-center gap-3">
-      <a href="#contact" class="btn-pill btn-out-dark !py-2.5 !px-5 text-[14px] whitespace-nowrap min-h-[44px]">Book Demo</a>
-      <a href="#contact" class="btn-pill btn-solid !bg-white !text-black !py-2.5 !px-5 text-[14px] whitespace-nowrap hidden sm:inline-block min-h-[44px]">Start Free Trial</a>
+      <a href="#contact" class="btn-pill btn-out-dark !py-2.5 !px-5 text-[14px] whitespace-nowrap min-h-[44px]"><span class="i18n"><span lang="en">Book Demo</span><span lang="vi">Đặt lịch demo</span></span></a>
+      <a href="#contact" class="btn-pill btn-solid !bg-white !text-black !py-2.5 !px-5 text-[14px] whitespace-nowrap hidden sm:inline-block min-h-[44px]"><span class="i18n"><span lang="en">Start Free Trial</span><span lang="vi">Dùng thử miễn phí</span></span></a>
       <button id="menuBtn" class="lg:hidden p-3 min-h-[44px] min-w-[44px] text-white" aria-label="Open menu" aria-expanded="false">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
     </div>
   </div>
   <div id="mobileNav" hidden class="lg:hidden pb-4 flex flex-col gap-1 text-[15px] text-white/90 border-t border-line-dark pt-3">
-    <a href="#scanner" class="py-3 px-1">Live Demo</a>
-    <a href="#how" class="py-3 px-1">How It Works</a>
-    <a href="#roi" class="py-3 px-1">Case Studies</a>
-    <a href="#pricing" class="py-3 px-1">Pricing</a>
-    <a href="#faq" class="py-3 px-1">FAQ</a>
-    <a href="#contact" class="py-3 px-1">Submit Invoices for Trial</a>
+    <div class="flex items-center gap-1 pb-2 mb-1 border-b border-line-dark/60" role="group" aria-label="Language / Ngôn ngữ">
+      <button type="button" data-lang="en" class="langBtn px-2 py-1 rounded" aria-current="true">EN</button>
+      <button type="button" data-lang="vi" class="langBtn px-2 py-1 rounded" aria-current="false">TIẾNG VIỆT</button>
+    </div>
+    <a href="#scanner" class="py-3 px-1"><span class="i18n"><span lang="en">Live Demo</span><span lang="vi">Demo trực tiếp</span></span></a>
+    <a href="#how" class="py-3 px-1"><span class="i18n"><span lang="en">How It Works</span><span lang="vi">Cách hoạt động</span></span></a>
+    <a href="#roi" class="py-3 px-1"><span class="i18n"><span lang="en">Case Studies</span><span lang="vi">Ca nghiên cứu</span></span></a>
+    <a href="#pricing" class="py-3 px-1"><span class="i18n"><span lang="en">Pricing</span><span lang="vi">Bảng giá</span></span></a>
+    <a href="#faq" class="py-3 px-1"><span class="i18n"><span lang="en">FAQ</span><span lang="vi">Hỏi &amp; đáp</span></span></a>
+    <a href="#contact" class="py-3 px-1"><span class="i18n"><span lang="en">Submit Invoices for Trial</span><span lang="vi">Gửi kỳ hóa đơn để chạy thử</span></span></a>
   </div>
 </div>
 </header>
@@ -127,37 +142,37 @@ details[open] summary span.ind{transform:rotate(45deg)}
 <div class="max-w-[1440px] mx-auto px-5 lg:px-8">
   <div class="max-w-[960px]">
     <div class="inline-flex items-center gap-2">
-      <span class="tag-shade">Input VAT & Corporate Tax Compliance</span>
-      <span class="hidden sm:inline-block font-mono text-[11px] text-cool-mint uppercase tracking-wider">● Enterprise Grade</span>
+      <span class="tag-shade"><span class="i18n"><span lang="en">Input VAT & Corporate Tax Compliance</span><span lang="vi">Tuân thủ thuế GTGT đầu vào & thuế TNDN</span></span></span>
+      <span class="hidden sm:inline-block font-mono text-[11px] text-cool-mint uppercase tracking-wider">● <span class="i18n"><span lang="en">Enterprise Grade</span><span lang="vi">Cấp độ doanh nghiệp</span></span></span>
     </div>
     <h1 class="dsp mt-5 text-[36px] leading-[1.05] tracking-[0.4px] sm:text-[52px] sm:leading-[1.02] sm:tracking-[1.2px] lg:text-[70px] lg:leading-[1.02] lg:tracking-[1.8px] text-white">
-      Pre-filing invoice risk audit<br class="hidden lg:block"> before tax submission
+      <span class="i18n"><span lang="en">Pre-filing invoice risk audit</span><span lang="vi">Rà soát rủi ro hóa đơn đầu vào</span></span><br class="hidden lg:block"> <span class="i18n"><span lang="en">before tax submission</span><span lang="vi">trước khi nộp tờ khai</span></span>
     </h1>
     <p class="text-[17px] font-medium leading-[1.55] text-white/85 mt-5 max-w-[720px]">
-      Deterministic real-time cross-checks against vendor tax statuses, issuance dates, and bank payment trails. Detect high-risk invoices before quarterly VAT filing.
+      <span class="i18n"><span lang="en">Deterministic real-time cross-checks against vendor tax statuses, issuance dates, and bank payment trails. Detect high-risk invoices before quarterly VAT filing.</span><span lang="vi">Đối chiếu tức thì theo nguyên tắc cố định với trạng thái thuế người bán, ngày phát hành hóa đơn và chứng từ thanh toán. Phát hiện sớm hóa đơn rủi ro trước kỳ kê khai thuế GTGT.</span></span>
     </p>
     <div class="flex flex-wrap items-center gap-4 sm:gap-6 mt-8">
-      <a href="#contact" class="btn-pill btn-out-dark min-h-[44px]">Submit Invoices for Trial Run →</a>
-      <a href="#scanner" class="inline-block py-3 text-[16px] text-white/90 underline decoration-white/40 underline-offset-4">Inspect 3 sample scenarios</a>
+      <a href="#contact" class="btn-pill btn-out-dark min-h-[44px]"><span class="i18n"><span lang="en">Submit Invoices for Trial Run →</span><span lang="vi">Gửi kỳ hóa đơn để chạy thử →</span></span></a>
+      <a href="#scanner" class="inline-block py-3 text-[16px] text-white/90 underline decoration-white/40 underline-offset-4"><span class="i18n"><span lang="en">Inspect 3 sample scenarios</span><span lang="vi">Xem 3 kịch bản mẫu</span></span></a>
     </div>
 
     <!-- STARTUP TRACTION & TECHNICAL METRICS STRIP -->
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 pt-8 border-t border-line-dark">
       <div>
         <div class="font-mono text-[24px] sm:text-[28px] font-semibold text-white">&lt; 0.4s</div>
-        <div class="text-[12px] text-cool-c1 uppercase tracking-wider mt-0.5">Audit Speed / Invoice</div>
+        <div class="text-[12px] text-cool-c1 uppercase tracking-wider mt-0.5"><span class="i18n"><span lang="en">Audit Speed / Invoice</span><span lang="vi">Tốc độ xử lý / hóa đơn</span></span></div>
       </div>
       <div>
         <div class="font-mono text-[24px] sm:text-[28px] font-semibold text-white">99.8%</div>
-        <div class="text-[12px] text-cool-c1 uppercase tracking-wider mt-0.5">Match Accuracy</div>
+        <div class="text-[12px] text-cool-c1 uppercase tracking-wider mt-0.5"><span class="i18n"><span lang="en">Match Accuracy</span><span lang="vi">Độ chính xác đối chiếu</span></span></div>
       </div>
       <div>
-        <div class="font-mono text-[24px] sm:text-[28px] font-semibold text-white">3-Way</div>
-        <div class="text-[12px] text-cool-c1 uppercase tracking-wider mt-0.5">XML ↔ Wire ↔ PO Audit</div>
+        <div class="font-mono text-[24px] sm:text-[28px] font-semibold text-white"><span class="i18n"><span lang="en">3-Way</span><span lang="vi">3 chiều</span></span></div>
+        <div class="text-[12px] text-cool-c1 uppercase tracking-wider mt-0.5"><span class="i18n"><span lang="en">XML ↔ Wire ↔ PO Audit</span><span lang="vi">Đối chiếu XML ↔ UNC ↔ Nhập kho</span></span></div>
       </div>
       <div>
         <div class="font-mono text-[24px] sm:text-[28px] font-semibold text-white">99.9%</div>
-        <div class="text-[12px] text-cool-c1 uppercase tracking-wider mt-0.5">Uptime SLA Target</div>
+        <div class="text-[12px] text-cool-c1 uppercase tracking-wider mt-0.5"><span class="i18n"><span lang="en">Uptime SLA Target</span><span lang="vi">Mục tiêu SLA uptime</span></span></div>
       </div>
     </div>
   </div>
@@ -172,69 +187,69 @@ details[open] summary span.ind{transform:rotate(45deg)}
           <div class="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-line-dark">
             <div class="flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-              <span class="font-mono text-[12px] text-cool-mint">ELECTRONIC INVOICE AUDIT DOSSIER</span>
+              <span class="font-mono text-[12px] text-cool-mint"><span class="i18n"><span lang="en">ELECTRONIC INVOICE AUDIT DOSSIER</span><span lang="vi">HỒ SƠ RÀ SOÁT HÓA ĐƠN ĐIỆN TỬ</span></span></span>
             </div>
-            <span class="px-2.5 py-0.5 rounded font-mono text-[10px] bg-white text-black font-semibold">FLAGGED FOR REVIEW</span>
+            <span class="px-2.5 py-0.5 rounded font-mono text-[10px] bg-white text-black font-semibold"><span class="i18n"><span lang="en">FLAGGED FOR REVIEW</span><span lang="vi">CẦN XEM LẠI</span></span></span>
           </div>
 
           <!-- Document Box looking like an authentic e-invoice document -->
           <div class="bg-[#12181b] border border-line-dark rounded-xl p-4 text-[12px] font-mono space-y-3">
             <!-- Invoice Meta Header -->
             <div class="flex flex-wrap justify-between items-center gap-2 pb-2.5 border-b border-line-dark text-cool-c3 text-[11.5px]">
-              <div>Form: <span class="text-white font-semibold">1C26TAA</span> · No: <span class="text-white font-semibold">0028910</span></div>
-              <div>Date: <span class="text-white font-semibold">14/09/2026</span> <span class="text-cool-c1 bg-[#1e2c31] px-1.5 py-0.5 rounded text-[10px] ml-1">Post-closure notice</span></div>
+              <div><span class="i18n"><span lang="en">Form: </span><span lang="vi">Mẫu: </span></span><span class="text-white font-semibold">1C26TAA</span> <span class="i18n"><span lang="en">· No: </span><span lang="vi">· Số: </span></span><span class="text-white font-semibold">0028910</span></div>
+              <div><span class="i18n"><span lang="en">Date: </span><span lang="vi">Ngày lập: </span></span><span class="text-white font-semibold">14/09/2026</span><span class="text-white/25"> · </span><span class="text-cool-c1 bg-[#1e2c31] px-1.5 py-0.5 rounded text-[10px] ml-1"><span class="i18n"><span lang="en">Post-closure notice</span><span lang="vi">Thông báo sau ngày đóng MST</span></span></span></div>
             </div>
 
             <!-- Seller Info with highlighted warning -->
             <div class="space-y-1">
-              <div class="text-cool-c3 text-[11px] uppercase tracking-wider">Seller:</div>
-              <div class="text-white font-medium">PHUONG DONG TRADING LTD. (illustrative)</div>
+              <div class="text-cool-c3 text-[11px] uppercase tracking-wider"><span class="i18n"><span lang="en">Seller:</span><span lang="vi">Người bán:</span></span></div>
+              <div class="text-white font-medium"><span class="i18n"><span lang="en">PHUONG DONG TRADING LTD. (illustrative)</span><span lang="vi">CÔNG TY TNHH THƯƠNG MẠI PHƯƠNG ĐÔNG (minh họa)</span></span></div>
               <div class="flex items-center gap-2 mt-1">
-                <span class="text-cool-c1">Tax ID: 0317892000</span>
-                <span class="bg-[#1e2c31] text-white border border-line-dark px-2 py-0.5 rounded text-[10.5px]">⚠️ Suspended (Tax Dept 10/09)</span>
+                <span class="text-cool-c1"><span class="i18n"><span lang="en">Tax ID: </span><span lang="vi">MST: </span></span>0317892000</span>
+                <span class="bg-[#1e2c31] text-white border border-line-dark px-2 py-0.5 rounded text-[10.5px]">⚠️ <span class="i18n"><span lang="en">Suspended (Tax Dept 10/09)</span><span lang="vi">Ngừng hoạt động (CQT 10/09)</span></span></span>
               </div>
             </div>
 
             <!-- Item Table -->
             <div class="border border-line-dark rounded-lg overflow-hidden text-[11px]">
               <div class="bg-[#1e2c31]/60 px-3 py-1.5 flex justify-between text-cool-c3 font-semibold">
-                <span>LINE ITEM / SERVICE</span>
-                <span>AMOUNT</span>
+                <span><span class="i18n"><span lang="en">LINE ITEM / SERVICE</span><span lang="vi">HÀNG HÓA / DỊCH VỤ</span></span></span>
+                <span><span class="i18n"><span lang="en">AMOUNT</span><span lang="vi">THÀNH TIỀN</span></span></span>
               </div>
               <div class="px-3 py-2 flex justify-between items-center bg-[#0a0a0a]/50 border-t border-line-dark">
-                <span class="text-white">IC Microcontroller Module X-10 (20 units)</span>
-                <span class="text-white font-mono">134,444,444 VND</span>
+                <span class="text-white"><span class="i18n"><span lang="en">IC Microcontroller Module X-10 (20 units)</span><span lang="vi">Mô-đun vi mạch X-10 (20 bộ)</span></span></span>
+                <span class="text-white font-mono"><span class="i18n"><span lang="en">134,444,444 VND</span><span lang="vi">134.444.444 đ</span></span></span>
               </div>
               <div class="px-3 py-1.5 flex justify-between items-center bg-[#1e2c31]/30 border-t border-line-dark text-[10.5px] text-cool-c3">
-                <span>VAT (8%)</span>
-                <span>10,755,556 VND</span>
+                <span><span class="i18n"><span lang="en">VAT (8%)</span><span lang="vi">Thuế GTGT (8%)</span></span></span>
+                <span><span class="i18n"><span lang="en">10,755,556 VND</span><span lang="vi">10.755.556 đ</span></span></span>
               </div>
               <div class="px-3 py-2 flex justify-between items-center bg-[#0a0a0a] border-t border-line-dark font-medium">
-                <span class="text-white">Total Payment:</span>
-                <span class="text-white font-mono text-[12px] font-semibold">145,200,000 VND</span>
+                <span class="text-white"><span class="i18n"><span lang="en">Total Payment:</span><span lang="vi">Tổng thanh toán:</span></span></span>
+                <span class="text-white font-mono text-[12px] font-semibold"><span class="i18n"><span lang="en">145,200,000 VND</span><span lang="vi">145.200.000 đ</span></span></span>
               </div>
             </div>
 
             <!-- Payment mode warning flag -->
             <div class="p-2.5 rounded-lg bg-[#1e2c31]/50 border border-line-dark flex items-center justify-between gap-2 text-[11.5px]">
               <div class="flex items-center gap-1.5 text-white">
-                <span>⚠️ Payment: Cash</span>
+                <span>⚠️ <span class="i18n"><span lang="en">Payment: Cash</span><span lang="vi">Thanh toán: Tiền mặt</span></span></span>
               </div>
-              <span class="text-cool-c1 text-[10.5px] font-mono">Missing bank slip (> 20M limit)</span>
+              <span class="text-cool-c1 text-[10.5px] font-mono"><span class="i18n"><span lang="en">Missing bank slip (> 20M limit)</span><span lang="vi">Thiếu ủy nhiệm chi (> ngưỡng 20 triệu)</span></span></span>
             </div>
           </div>
 
           <!-- Audit Decision Pill -->
           <div class="mt-3.5 p-3 rounded-lg bg-[#1e2c31]/40 border border-line-dark flex items-center justify-between text-[12px]">
             <span class="text-white font-semibold flex items-center gap-1.5">
-              <span>⛔</span> Recommendation: Hold entry, verify before quarterly deadline
+              <span>⛔</span> <span class="i18n"><span lang="en">Recommendation: Hold entry, verify before quarterly deadline</span><span lang="vi">Khuyến nghị: Tạm giữ, xác minh trước hạn nộp tờ khai quý</span></span>
             </span>
-            <span class="text-cool-mint text-[11px] font-mono">3 flags</span>
+            <span class="text-cool-mint text-[11px] font-mono"><span class="i18n"><span lang="en">3 flags</span><span lang="vi">3 cờ đỏ</span></span></span>
           </div>
         </div>
 
         <p class="font-mono text-[11px] text-cool-c2 pt-3 mt-4 border-t border-line-dark leading-relaxed">
-          Illustrative data. Technical audit warnings only, not official tax determinations.
+          <span class="i18n"><span lang="en">Illustrative data. Technical audit warnings only, not official tax determinations.</span><span lang="vi">Dữ liệu minh họa. Chỉ là cảnh báo kỹ thuật, không phải kết luận thuế chính thức.</span></span>
         </p>
       </div>
     </div>
@@ -242,19 +257,19 @@ details[open] summary span.ind{transform:rotate(45deg)}
     <!-- col 2: 3 signal cards -->
     <div class="lg:col-span-5 order-1 lg:order-2 flex flex-col justify-between gap-3.5">
       <div class="card-dark p-5">
-        <div class="eyebrow text-cool-mint mb-1">Signal 01</div>
-        <h3 class="text-[16px] text-white font-medium mb-1">Seller Tax Status</h3>
-        <p class="text-[14px] text-white/75 leading-[1.5]">Vendor suspended operations or closed tax code prior to invoice issuance date.</p>
+        <div class="eyebrow text-cool-mint mb-1"><span class="i18n"><span lang="en">Signal 01</span><span lang="vi">Tín hiệu 01</span></span></div>
+        <h3 class="text-[16px] text-white font-medium mb-1"><span class="i18n"><span lang="en">Seller Tax Status</span><span lang="vi">Trạng thái người bán</span></span></h3>
+        <p class="text-[14px] text-white/75 leading-[1.5]"><span class="i18n"><span lang="en">Vendor suspended operations or closed tax code prior to invoice issuance date.</span><span lang="vi">Nhà cung cấp ngừng hoạt động hoặc đóng mã số thuế trước ngày xuất hóa đơn.</span></span></p>
       </div>
       <div class="card-dark p-5">
-        <div class="eyebrow text-cool-mint mb-1">Signal 02</div>
-        <h3 class="text-[16px] text-white font-medium mb-1">Issuance Timing</h3>
-        <p class="text-[14px] text-white/75 leading-[1.5]">Invoice issued after the tax authority officially published business closure.</p>
+        <div class="eyebrow text-cool-mint mb-1"><span class="i18n"><span lang="en">Signal 02</span><span lang="vi">Tín hiệu 02</span></span></div>
+        <h3 class="text-[16px] text-white font-medium mb-1"><span class="i18n"><span lang="en">Issuance Timing</span><span lang="vi">Thời điểm phát hành</span></span></h3>
+        <p class="text-[14px] text-white/75 leading-[1.5]"><span class="i18n"><span lang="en">Invoice issued after the tax authority officially published business closure.</span><span lang="vi">Hóa đơn xuất sau ngày cơ quan thuế công bố trạng thái ngừng kinh doanh.</span></span></p>
       </div>
       <div class="card-dark p-5">
-        <div class="eyebrow text-cool-mint mb-1">Signal 03</div>
-        <h3 class="text-[16px] text-white font-medium mb-1">Payment Proof</h3>
-        <p class="text-[14px] text-white/75 leading-[1.5]">Transactions above statutory threshold lacking bank transfer slip matching payee.</p>
+        <div class="eyebrow text-cool-mint mb-1"><span class="i18n"><span lang="en">Signal 03</span><span lang="vi">Tín hiệu 03</span></span></div>
+        <h3 class="text-[16px] text-white font-medium mb-1"><span class="i18n"><span lang="en">Payment Proof</span><span lang="vi">Chứng từ thanh toán</span></span></h3>
+        <p class="text-[14px] text-white/75 leading-[1.5]"><span class="i18n"><span lang="en">Transactions above statutory threshold lacking bank transfer slip matching payee.</span><span lang="vi">Khoản chi trên ngưỡng quy định thiếu ủy nhiệm chi khớp tên người nhận.</span></span></p>
       </div>
     </div>
   </div>
@@ -262,7 +277,7 @@ details[open] summary span.ind{transform:rotate(45deg)}
   <!-- ENTERPRISE ECOSYSTEM COMPATIBILITY STRIP (Sunteco style) -->
   <div class="mt-14 pt-8 border-t border-line-dark">
     <div class="text-[11.5px] font-mono uppercase tracking-[1.2px] text-cool-c2 mb-4 text-center lg:text-left">
-      Enterprise Ecosystem Compatibility · Verified ERP & E-Invoice Rails
+      <span class="i18n"><span lang="en">Enterprise Ecosystem Compatibility · Verified ERP & E-Invoice Rails</span><span lang="vi">Tương thích hệ sinh thái doanh nghiệp · Đã kiểm chứng với ERP & hóa đơn điện tử</span></span>
     </div>
     <div class="flex flex-wrap items-center justify-start gap-3 py-1 text-white/80 font-medium text-[13px]">
       <span class="px-3.5 py-1.5 rounded-full bg-[#1e2c31]/40 border border-line-dark">MISA AMIS</span>
@@ -272,7 +287,7 @@ details[open] summary span.ind{transform:rotate(45deg)}
       <span class="px-3.5 py-1.5 rounded-full bg-[#1e2c31]/40 border border-line-dark">Oracle NetSuite</span>
       <span class="px-3.5 py-1.5 rounded-full bg-[#1e2c31]/40 border border-line-dark">Viettel S-Invoice</span>
       <span class="px-3.5 py-1.5 rounded-full bg-[#1e2c31]/40 border border-line-dark">VNPT e-Invoice</span>
-      <span class="px-3.5 py-1.5 rounded-full bg-[#1e2c31]/40 border border-line-dark">Vietcombank / Techcombank Wire Feeds</span>
+      <span class="px-3.5 py-1.5 rounded-full bg-[#1e2c31]/40 border border-line-dark"><span class="i18n"><span lang="en">Vietcombank / Techcombank Wire Feeds</span><span lang="vi">Ủy nhiệm chi Vietcombank / Techcombank</span></span></span>
     </div>
   </div>
 </div>
@@ -282,39 +297,39 @@ details[open] summary span.ind{transform:rotate(45deg)}
 <section id="scanner" class="bg-black pt-20 pb-24 lg:pt-24 lg:pb-28 border-t border-line-dark">
 <div class="max-w-[1440px] mx-auto px-5 lg:px-8">
   <div class="max-w-[720px] mb-10">
-    <div class="eyebrow text-cool-mint mb-3">Interactive Demo · Illustrative Data</div>
-    <h2 class="dsp-lg text-[32px] leading-[1.08] text-white sm:text-[46px] lg:text-[54px]">Test 3 real-world risk scenarios</h2>
+    <div class="eyebrow text-cool-mint mb-3"><span class="i18n"><span lang="en">Interactive Demo · Illustrative Data</span><span lang="vi">Demo tương tác · Dữ liệu minh họa</span></span></div>
+    <h2 class="dsp-lg text-[32px] leading-[1.08] text-white sm:text-[46px] lg:text-[54px]"><span class="i18n"><span lang="en">Test 3 real-world risk scenarios</span><span lang="vi">Kiểm tra 3 tình huống rủi ro thực tế</span></span></h2>
     <p class="text-[15px] text-white/75 leading-[1.5] mt-3">
-      Select a sample scenario below to see automated cross-checks and flags.
+      <span class="i18n"><span lang="en">Select a sample scenario below to see automated cross-checks and flags.</span><span lang="vi">Chọn một tình huống mẫu bên dưới để xem hệ thống đối chiếu và gắn cờ.</span></span>
     </p>
   </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
     <div class="lg:col-span-5">
       <div class="frame-dark p-5 lg:p-6">
-        <label for="mstInput" class="block text-[15px] text-white/85 mb-2">Tax ID to inspect</label>
+        <label for="mstInput" class="block text-[15px] text-white/85 mb-2"><span class="i18n"><span lang="en">Tax ID to inspect</span><span lang="vi">MST cần kiểm tra</span></span></label>
         <input id="mstInput" inputmode="numeric" maxlength="10" placeholder="0301234567"
                class="w-full px-3 py-2.5 rounded-lg bg-[#0a0a0a] border border-line-dark text-[15px] font-mono text-white placeholder:text-cool-c2" autocomplete="off">
 
         <div class="mt-4 flex flex-col gap-2 text-[13px]">
           <button data-demo="clean" class="demoBtn text-left px-4 py-2.5 rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,.28)] min-h-[44px] flex items-center justify-between">
-            <span>1. Compliant invoice</span>
-            <span class="text-cool-mint font-mono text-[11px]">PASS</span>
+            <span><span class="i18n"><span lang="en">1. Compliant invoice</span><span lang="vi">1. Hóa đơn hợp lệ</span></span></span>
+            <span class="text-cool-mint font-mono text-[11px]"><span class="i18n"><span lang="en">PASS</span><span lang="vi">ĐẠT</span></span></span>
           </button>
           <button data-demo="risky" class="demoBtn text-left px-4 py-2.5 rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,.28)] min-h-[44px] flex items-center justify-between">
-            <span>2. Suspended seller</span>
-            <span class="text-white font-mono text-[11px] bg-white/20 px-1.5 py-0.5 rounded">HIGH RISK</span>
+            <span><span class="i18n"><span lang="en">2. Suspended seller</span><span lang="vi">2. Người bán ngừng hoạt động</span></span></span>
+            <span class="text-white font-mono text-[11px] bg-white/20 px-1.5 py-0.5 rounded"><span class="i18n"><span lang="en">HIGH RISK</span><span lang="vi">RỦI RO CAO</span></span></span>
           </button>
           <button data-demo="cash" class="demoBtn text-left px-4 py-2.5 rounded-full text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,.28)] min-h-[44px] flex items-center justify-between">
-            <span>3. Missing payment order</span>
-            <span class="text-cool-c1 font-mono text-[11px]">REVIEW</span>
+            <span><span class="i18n"><span lang="en">3. Missing payment order</span><span lang="vi">3. Thiếu ủy nhiệm chi</span></span></span>
+            <span class="text-cool-c1 font-mono text-[11px]"><span class="i18n"><span lang="en">REVIEW</span><span lang="vi">CẦN SOÁT</span></span></span>
           </button>
         </div>
 
-        <button id="runScan" class="btn-pill btn-out-dark mt-5 w-full !px-4 min-h-[44px]">Run Inspection</button>
+        <button id="runScan" class="btn-pill btn-out-dark mt-5 w-full !px-4 min-h-[44px]"><span class="i18n"><span lang="en">Run Inspection</span><span lang="vi">Chạy kiểm tra</span></span></button>
 
         <div class="mt-5 pt-4 border-t border-line-dark flex items-center justify-between text-[14px]">
-          <span class="text-cool-c1">Risk level</span>
+          <span class="text-cool-c1"><span class="i18n"><span lang="en">Risk level</span><span lang="vi">Mức độ rủi ro</span></span></span>
           <span id="scoreLabel" class="font-mono font-medium text-white">—</span>
         </div>
         <div class="h-1.5 rounded-full bg-white/15 overflow-hidden mt-2"><div id="scoreBar" class="h-full w-0 bg-white transition-all duration-500"></div></div>
@@ -325,11 +340,11 @@ details[open] summary span.ind{transform:rotate(45deg)}
       <div class="h-full min-h-[280px] frame-dark p-5 lg:p-6 relative overflow-hidden flex flex-col justify-between">
         <div id="scanLine" hidden class="absolute inset-x-0 top-0 h-px bg-white/45"></div>
         <div id="scanIdle" class="my-auto text-center py-8">
-          <div class="font-mono text-[13px] text-cool-mint mb-2">No inspection data</div>
-          <p class="text-[14px] text-white/75 max-w-sm mx-auto leading-[1.5]">Select a sample scenario on the left to view instant analysis.</p>
+          <div class="font-mono text-[13px] text-cool-mint mb-2"><span class="i18n"><span lang="en">No inspection data</span><span lang="vi">Chưa có dữ liệu kiểm tra</span></span></div>
+          <p class="text-[14px] text-white/75 max-w-sm mx-auto leading-[1.5]"><span class="i18n"><span lang="en">Select a sample scenario on the left to view instant analysis.</span><span lang="vi">Chọn một tình huống mẫu ở cột bên trái để xem kết quả phân tích tức thì.</span></span></p>
         </div>
         <div id="scanOut" hidden class="space-y-2.5 font-mono text-[12.5px] leading-[1.6]"></div>
-        <p class="micro text-cool-c3 pt-4 border-t border-line-dark leading-[1.5] mt-4">Illustrative data for demo purposes. Not for actual tax filing.</p>
+        <p class="micro text-cool-c3 pt-4 border-t border-line-dark leading-[1.5] mt-4"><span class="i18n"><span lang="en">Illustrative data for demo purposes. Not for actual tax filing.</span><span lang="vi">Dữ liệu minh họa cho mục đích demo. Không dùng để kê khai thuế.</span></span></p>
       </div>
     </div>
   </div>
@@ -342,67 +357,67 @@ details[open] summary span.ind{transform:rotate(45deg)}
 <section id="how" class="py-12 lg:py-16 bg-cream border-b border-line">
 <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
   <div class="max-w-[720px] mb-8">
-    <div class="eyebrow text-shade-60 mb-2">Workflow & Engine</div>
-    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black">4 steps before posting to general ledger</h2>
+    <div class="eyebrow text-shade-60 mb-2"><span class="i18n"><span lang="en">Workflow & Engine</span><span lang="vi">Quy trình & Engine</span></span></div>
+    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black"><span class="i18n"><span lang="en">4 steps before posting to general ledger</span><span lang="vi">4 bước trước khi vào sổ cái</span></span></h2>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative">
     <div class="card-light p-5 flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <span class="eyebrow text-shade-50">Step 01</span>
+          <span class="eyebrow text-shade-50"><span class="i18n"><span lang="en">Step 01</span><span lang="vi">Bước 01</span></span></span>
           <span class="text-[11px] font-mono bg-cream px-2 py-0.5 rounded border border-line">XML / PDF</span>
         </div>
-        <h3 class="h-md text-black mb-1.5">Ingest Invoices</h3>
-        <p class="text-[14px] leading-[1.5] text-black">Read XML/PDF e-invoices from your existing invoice providers.</p>
+        <h3 class="h-md text-black mb-1.5"><span class="i18n"><span lang="en">Ingest Invoices</span><span lang="vi">Tải hóa đơn</span></span></h3>
+        <p class="text-[14px] leading-[1.5] text-black"><span class="i18n"><span lang="en">Read XML/PDF e-invoices from your existing invoice providers.</span><span lang="vi">Đọc hóa đơn điện tử XML/PDF từ nhà cung cấp bạn đang dùng.</span></span></p>
       </div>
       <div class="mt-4 pt-3 border-t border-line text-[12px] text-shade-50 flex items-center gap-1.5">
-        <span>●</span> Raw Ingestion
+        <span>●</span> <span class="i18n"><span lang="en">Raw Ingestion</span><span lang="vi">Nạp dữ liệu thô</span></span>
       </div>
     </div>
     <div class="card-light p-5 flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <span class="eyebrow text-shade-50">Step 02</span>
-          <span class="text-[11px] font-mono bg-cream px-2 py-0.5 rounded border border-line">Tax Dept DB</span>
+          <span class="eyebrow text-shade-50"><span class="i18n"><span lang="en">Step 02</span><span lang="vi">Bước 02</span></span></span>
+          <span class="text-[11px] font-mono bg-cream px-2 py-0.5 rounded border border-line"><span class="i18n"><span lang="en">Tax Dept DB</span><span lang="vi">CSDL cơ quan thuế</span></span></span>
         </div>
-        <h3 class="h-md text-black mb-1.5">Screen Vendors</h3>
-        <p class="text-[14px] leading-[1.5] text-black">Cross-reference Tax ID against public blacklists of suspended enterprises.</p>
+        <h3 class="h-md text-black mb-1.5"><span class="i18n"><span lang="en">Screen Vendors</span><span lang="vi">Quét người bán</span></span></h3>
+        <p class="text-[14px] leading-[1.5] text-black"><span class="i18n"><span lang="en">Cross-reference Tax ID against public blacklists of suspended enterprises.</span><span lang="vi">Đối chiếu MST với danh sách công khai doanh nghiệp ngừng hoạt động.</span></span></p>
       </div>
       <div class="mt-4 pt-3 border-t border-line text-[12px] text-shade-50 flex items-center gap-1.5">
-        <span>●</span> Legal Audit
+        <span>●</span> <span class="i18n"><span lang="en">Legal Audit</span><span lang="vi">Kiểm tra pháp lý</span></span>
       </div>
     </div>
     <div class="card-light p-5 flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <span class="eyebrow text-shade-50">Step 03</span>
-          <span class="text-[11px] font-mono bg-cream px-2 py-0.5 rounded border border-line">Bank Feeds</span>
+          <span class="eyebrow text-shade-50"><span class="i18n"><span lang="en">Step 03</span><span lang="vi">Bước 03</span></span></span>
+          <span class="text-[11px] font-mono bg-cream px-2 py-0.5 rounded border border-line"><span class="i18n"><span lang="en">Bank Feeds</span><span lang="vi">Sao kê ngân hàng</span></span></span>
         </div>
-        <h3 class="h-md text-black mb-1.5">Match Slips</h3>
-        <p class="text-[14px] leading-[1.5] text-black">Reconcile bank payment orders and warehouse receipts per transaction.</p>
+        <h3 class="h-md text-black mb-1.5"><span class="i18n"><span lang="en">Match Slips</span><span lang="vi">Sao kê UNC</span></span></h3>
+        <p class="text-[14px] leading-[1.5] text-black"><span class="i18n"><span lang="en">Reconcile bank payment orders and warehouse receipts per transaction.</span><span lang="vi">Đối chiếu ủy nhiệm chi ngân hàng và phiếu nhập kho theo từng giao dịch.</span></span></p>
       </div>
       <div class="mt-4 pt-3 border-t border-line text-[12px] text-shade-50 flex items-center gap-1.5">
-        <span>●</span> Cashflow Match
+        <span>●</span> <span class="i18n"><span lang="en">Cashflow Match</span><span lang="vi">Đối soát dòng tiền</span></span>
       </div>
     </div>
     <div class="card-light p-5 flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-3">
-          <span class="eyebrow text-shade-50">Step 04</span>
-          <span class="text-[11px] font-mono bg-cream px-2 py-0.5 rounded border border-line">Audit Dossier</span>
+          <span class="eyebrow text-shade-50"><span class="i18n"><span lang="en">Step 04</span><span lang="vi">Bước 04</span></span></span>
+          <span class="text-[11px] font-mono bg-cream px-2 py-0.5 rounded border border-line"><span class="i18n"><span lang="en">Audit Dossier</span><span lang="vi">Xuất hồ sơ</span></span></span>
         </div>
-        <h3 class="h-md text-black mb-1.5">Receive Alert</h3>
-        <p class="text-[14px] leading-[1.5] text-black">Export audit-ready discrepancy lists with clear reasons before tax filing.</p>
+        <h3 class="h-md text-black mb-1.5"><span class="i18n"><span lang="en">Receive Alert</span><span lang="vi">Nhận cảnh báo</span></span></h3>
+        <p class="text-[14px] leading-[1.5] text-black"><span class="i18n"><span lang="en">Export audit-ready discrepancy lists with clear reasons before tax filing.</span><span lang="vi">Xuất danh sách hóa đơn cần xem xét kèm lý do trước khi lập tờ khai.</span></span></p>
       </div>
       <div class="mt-4 pt-3 border-t border-line text-[12px] text-shade-50 flex items-center gap-1.5">
-        <span>●</span> Filing Ready
+        <span>●</span> <span class="i18n"><span lang="en">Filing Ready</span><span lang="vi">Sẵn sàng kê khai</span></span>
       </div>
     </div>
   </div>
 
   <div class="mt-5 p-4 rounded-xl bg-pistachio text-[13.5px] text-black leading-[1.5]">
-    <strong>Note:</strong> The system provides automated technical risk signals to assist accountants; it does not replace official corporate tax filing obligations.
+    <strong><span class="i18n"><span lang="en">Note:</span><span lang="vi">Lưu ý:</span></span></strong> <span class="i18n"><span lang="en">The system provides automated technical risk signals to assist accountants; it does not replace official corporate tax filing obligations.</span><span lang="vi">Hệ thống đưa ra cảnh báo kỹ thuật tự động hỗ trợ kế toán soát xét, không thay thế nghĩa vụ kê khai thuế của doanh nghiệp.</span></span>
   </div>
 </div>
 </section>
@@ -412,10 +427,10 @@ details[open] summary span.ind{transform:rotate(45deg)}
 <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
     <div class="lg:col-span-5">
-      <div class="eyebrow text-shade-60 mb-2">Exposure Estimate</div>
-      <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black">Avoid retroactive penalties & late fees</h2>
+      <div class="eyebrow text-shade-60 mb-2"><span class="i18n"><span lang="en">Exposure Estimate</span><span lang="vi">Ước tính thiệt hại</span></span></div>
+      <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black"><span class="i18n"><span lang="en">Avoid retroactive penalties & late fees</span><span lang="vi">Tránh phạt truy thu & chậm nộp</span></span></h2>
       <p class="text-[15px] mt-4 leading-[1.5] text-black">
-        Prevent 20% under-declaration penalties and 0.03%/day late payment interest under tax administration decrees when input VAT invoices are rejected.
+        <span class="i18n"><span lang="en">Prevent 20% under-declaration penalties and 0.03%/day late payment interest under tax administration decrees when input VAT invoices are rejected.</span><span lang="vi">Tránh mức phạt khai thiếu 20% và tiền chậm nộp 0,03%/ngày theo nghị định quản lý thuế khi hóa đơn đầu vào bị loại.</span></span>
       </p>
     </div>
 
@@ -424,7 +439,7 @@ details[open] summary span.ind{transform:rotate(45deg)}
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
             <label for="invRange" class="flex justify-between text-[14px] text-black mb-2">
-              <span>Monthly input invoices</span><span id="invLabel" class="font-mono font-medium">800</span>
+              <span><span class="i18n"><span lang="en">Monthly input invoices</span><span lang="vi">Hóa đơn đầu vào / tháng</span></span></span><span id="invLabel" class="font-mono font-medium">800</span>
             </label>
             <input id="invRange" type="range" min="100" max="5000" step="50" value="800" class="w-full">
             <div class="flex flex-wrap gap-2 mt-3 text-[13px]">
@@ -436,28 +451,28 @@ details[open] summary span.ind{transform:rotate(45deg)}
           </div>
           <div>
             <label for="flagRange" class="flex justify-between text-[14px] text-black mb-2">
-              <span>Discrepancy rate</span><span id="flagLabel" class="font-mono font-medium">2%</span>
+              <span><span class="i18n"><span lang="en">Discrepancy rate</span><span lang="vi">Tỷ lệ hóa đơn lỗi</span></span></span><span id="flagLabel" class="font-mono font-medium">2%</span>
             </label>
             <input id="flagRange" type="range" min="0.5" max="8" step="0.5" value="2" class="w-full">
-            <p class="text-[13px] text-shade-50 mt-3 leading-[1.5]">Estimated percentage to assist internal audit planning.</p>
+            <p class="text-[13px] text-shade-50 mt-3 leading-[1.5]"><span class="i18n"><span lang="en">Estimated percentage to assist internal audit planning.</span><span lang="vi">Tỷ lệ ước tính để hỗ trợ kế hoạch kiểm toán nội bộ.</span></span></p>
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-5 border-t border-line">
           <div>
-            <div class="eyebrow text-shade-50 mb-1">Flagged for review</div>
+            <div class="eyebrow text-shade-50 mb-1"><span class="i18n"><span lang="en">Flagged for review</span><span lang="vi">Cần xem lại</span></span></div>
             <div id="outCount" class="h-xl text-black">16</div>
-            <div class="text-[12.5px] text-shade-50 mt-0.5">suspicious invoices</div>
+            <div class="text-[12.5px] text-shade-50 mt-0.5"><span class="i18n"><span lang="en">suspicious invoices</span><span lang="vi">hóa đơn nghi ngờ</span></span></div>
           </div>
           <div>
-            <div class="eyebrow text-shade-50 mb-1">Time saved</div>
-            <div id="outHours" class="h-xl text-black">20 hours</div>
-            <div class="text-[12.5px] text-shade-50 mt-0.5">manual audit time</div>
+            <div class="eyebrow text-shade-50 mb-1"><span class="i18n"><span lang="en">Time saved</span><span lang="vi">Thời gian tiết kiệm</span></span></div>
+            <div id="outHours" class="h-xl text-black"><span class="i18n"><span lang="en">20 hours</span><span lang="vi">20 giờ</span></span></div>
+            <div class="text-[12.5px] text-shade-50 mt-0.5"><span class="i18n"><span lang="en">manual audit time</span><span lang="vi">thời gian soát xét thủ công</span></span></div>
           </div>
           <div>
-            <div class="eyebrow text-shade-50 mb-1">Next step</div>
-            <a href="#pricing" class="inline-block py-1.5 h-xl text-black underline decoration-black/30">Pricing →</a>
-            <div class="text-[12.5px] text-shade-50 mt-0.5">from ~$20/mo</div>
+            <div class="eyebrow text-shade-50 mb-1"><span class="i18n"><span lang="en">Next step</span><span lang="vi">Bước tiếp theo</span></span></div>
+            <a href="#pricing" class="inline-block py-1.5 h-xl text-black underline decoration-black/30"><span class="i18n"><span lang="en">Pricing →</span><span lang="vi">Bảng giá →</span></span></a>
+            <div class="text-[12.5px] text-shade-50 mt-0.5"><span class="i18n"><span lang="en">from ~$20/mo</span><span lang="vi">từ ~20 USD/tháng</span></span></div>
           </div>
         </div>
       </div>
@@ -467,22 +482,22 @@ details[open] summary span.ind{transform:rotate(45deg)}
   <!-- CUSTOMER SUCCESS & CASE STUDIES BLOCK -->
   <div class="mt-12 pt-10 border-t border-line">
     <div class="max-w-[720px] mb-6">
-      <div class="eyebrow text-shade-60 mb-2">Proven Outcomes</div>
-      <h3 class="dsp-lg text-[22px] lg:text-[28px] leading-[1.15] text-black">Verified Case Studies</h3>
+      <div class="eyebrow text-shade-60 mb-2"><span class="i18n"><span lang="en">Proven Outcomes</span><span lang="vi">Hiệu quả đã kiểm chứng</span></span></div>
+      <h3 class="dsp-lg text-[22px] lg:text-[28px] leading-[1.15] text-black"><span class="i18n"><span lang="en">Verified Case Studies</span><span lang="vi">Ca nghiên cứu thực tế</span></span></h3>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       <div class="card-light p-6">
-        <span class="tag-mint text-[11px] font-semibold">FDI Supply Chain</span>
-        <h4 class="h-md text-black mt-3 mb-2">Hai Ha Precision Tooling Ltd.</h4>
+        <span class="tag-mint text-[11px] font-semibold"><span class="i18n"><span lang="en">FDI Supply Chain</span><span lang="vi">Chuỗi cung ứng FDI</span></span></span>
+        <h4 class="h-md text-black mt-3 mb-2"><span class="i18n"><span lang="en">Hai Ha Precision Tooling Ltd.</span><span lang="vi">Công ty TNHH Cơ khí chính xác Hà Hà</span></span></h4>
         <p class="text-[14px] text-shade-70 leading-[1.55]">
-          Audited 4,800 supplier invoices across Q2 and Q3. Caught 14 invoices issued by vendors that closed their tax status post-issuance, preventing an estimated $42,000 in retroactive tax disallowances.
+          <span class="i18n"><span lang="en">Audited 4,800 supplier invoices across Q2 and Q3. Caught 14 invoices issued by vendors that closed their tax status post-issuance, preventing an estimated $42,000 in retroactive tax disallowances.</span><span lang="vi">Đã rà soát 4.800 hóa đơn đầu vào trong Quý II và III. Phát hiện 14 hóa đơn do người bán đã đóng trạng thái thuế sau khi xuất hóa đơn, tránh ước tính 42.000 USD thuế bị loại truy thu.</span></span>
         </p>
       </div>
       <div class="card-light p-6">
-        <span class="tag-shade text-[11px] font-semibold">Retail & Distribution</span>
-        <h4 class="h-md text-black mt-3 mb-2">An Phu Logistics (42 Depots)</h4>
+        <span class="tag-shade text-[11px] font-semibold"><span class="i18n"><span lang="en">Retail & Distribution</span><span lang="vi">Bán lẻ & Phân phối</span></span></span>
+        <h4 class="h-md text-black mt-3 mb-2"><span class="i18n"><span lang="en">An Phu Logistics (42 Depots)</span><span lang="vi">Kho vận An Phú (42 kho)</span></span></h4>
         <p class="text-[14px] text-shade-70 leading-[1.55]">
-          Automated monthly intake of 3,200 supplier invoices. Reconciled 100% of bank wire slips against accounts payable, reducing quarterly fiscal audit prep from 4 business days to 45 minutes.
+          <span class="i18n"><span lang="en">Automated monthly intake of 3,200 supplier invoices. Reconciled 100% of bank wire slips against accounts payable, reducing quarterly fiscal audit prep from 4 business days to 45 minutes.</span><span lang="vi">Tự động nạp 3.200 hóa đơn đầu vào mỗi tháng. Đối soát 100% ủy nhiệm chi với công nợ phải trả, giảm thời gian chuẩn bị kiểm toán thuế theo quý từ 4 ngày làm việc xuống 45 phút.</span></span>
         </p>
       </div>
     </div>
@@ -494,22 +509,22 @@ details[open] summary span.ind{transform:rotate(45deg)}
 <section id="security" class="py-12 lg:py-16 bg-cream border-b border-line">
 <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
   <div class="max-w-[720px] mb-8">
-    <div class="eyebrow text-shade-60 mb-2">Security & Regional Infrastructure</div>
-    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black">Enterprise security & compliance</h2>
+    <div class="eyebrow text-shade-60 mb-2"><span class="i18n"><span lang="en">Security & Regional Infrastructure</span><span lang="vi">Bảo mật & Hạ tầng khu vực</span></span></div>
+    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black"><span class="i18n"><span lang="en">Enterprise security & compliance</span><span lang="vi">Bảo mật & tuân thủ cấp doanh nghiệp</span></span></h2>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
     <div class="card-light p-5">
-      <h3 class="h-md text-black mb-1.5">High-Grade Encryption</h3>
-      <p class="text-[14px] leading-[1.5] text-black">AES-256 at rest, TLS 1.3 in transit. Keys isolated in dedicated HSM security infrastructure.</p>
+      <h3 class="h-md text-black mb-1.5"><span class="i18n"><span lang="en">High-Grade Encryption</span><span lang="vi">Mã hóa cấp cao</span></span></h3>
+      <p class="text-[14px] leading-[1.5] text-black"><span class="i18n"><span lang="en">AES-256 at rest, TLS 1.3 in transit. Keys isolated in dedicated HSM security infrastructure.</span><span lang="vi">AES-256 cho dữ liệu lưu, TLS 1.3 cho dữ liệu truyền. Khóa lưu riêng trong hạ tầng HSM.</span></span></p>
     </div>
     <div class="card-light p-5">
-      <h3 class="h-md text-black mb-1.5">Tier-III Infrastructure</h3>
-      <p class="text-[14px] leading-[1.5] text-black">Equinix & enterprise cloud facilities with 99.95% uptime. Zero AI model training on corporate datasets.</p>
+      <h3 class="h-md text-black mb-1.5"><span class="i18n"><span lang="en">Tier-III Infrastructure</span><span lang="vi">Hạ tầng Tier-III</span></span></h3>
+      <p class="text-[14px] leading-[1.5] text-black"><span class="i18n"><span lang="en">Equinix & enterprise cloud facilities with 99.95% uptime. Zero AI model training on corporate datasets.</span><span lang="vi">Equinix & cloud doanh nghiệp, uptime 99,95%. Không dùng dữ liệu khách hàng để huấn luyện AI.</span></span></p>
     </div>
     <div class="card-light p-5">
-      <h3 class="h-md text-black mb-1.5">Complete Custody</h3>
-      <p class="text-[14px] leading-[1.5] text-black">Export full CSV/Excel dossiers anytime. Permanent cryptographic data purging upon customer request.</p>
+      <h3 class="h-md text-black mb-1.5"><span class="i18n"><span lang="en">Complete Custody</span><span lang="vi">Toàn quyền dữ liệu</span></span></h3>
+      <p class="text-[14px] leading-[1.5] text-black"><span class="i18n"><span lang="en">Export full CSV/Excel dossiers anytime. Permanent cryptographic data purging upon customer request.</span><span lang="vi">Xuất hồ sơ CSV/Excel bất cứ lúc nào. Xóa vĩnh viễn dữ liệu bằng mã hóa khi khách hàng yêu cầu.</span></span></p>
     </div>
   </div>
 </div>
@@ -519,61 +534,61 @@ details[open] summary span.ind{transform:rotate(45deg)}
 <section id="pricing" class="py-12 lg:py-16 bg-white border-b border-line">
 <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
   <div class="max-w-[720px] mb-8">
-    <div class="eyebrow text-shade-60 mb-2">Pricing</div>
-    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black">Predictable pricing, scalable volume</h2>
-    <p class="text-[14.5px] mt-2 leading-[1.5] text-shade-50">Overage: 400 VND (~$0.016)/invoice. No mid-cycle cutoffs. Exclusive of statutory taxes.</p>
+    <div class="eyebrow text-shade-60 mb-2"><span class="i18n"><span lang="en">Pricing</span><span lang="vi">Bảng giá</span></span></div>
+    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black"><span class="i18n"><span lang="en">Predictable pricing, scalable volume</span><span lang="vi">Giá rõ ràng, sản lượng linh hoạt</span></span></h2>
+    <p class="text-[14.5px] mt-2 leading-[1.5] text-shade-50"><span class="i18n"><span lang="en">Overage: 400 VND (~$0.016)/invoice. No mid-cycle cutoffs. Exclusive of statutory taxes.</span><span lang="vi">Vượt mức: 400 đ (~0,016 USD)/hóa đơn. Không cắt giữa kỳ. Chưa gồm thuế theo quy định.</span></span></p>
   </div>
 
   <div class="snap-row md:grid md:grid-cols-3 gap-4 md:gap-6 items-stretch">
     <!-- Tier 1 -->
     <div class="flex flex-col card-light p-6 lg:p-7">
-      <div class="h-xl text-black mb-1">Starter</div>
-      <div class="text-[13.5px] text-shade-50 mb-4">Businesses under 500 invoices/month.</div>
+      <div class="h-xl text-black mb-1"><span class="i18n"><span lang="en">Starter</span><span lang="vi">Cơ bản</span></span></div>
+      <div class="text-[13.5px] text-shade-50 mb-4"><span class="i18n"><span lang="en">Businesses under 500 invoices/month.</span><span lang="vi">Doanh nghiệp dưới 500 hóa đơn/tháng.</span></span></div>
       <div class="flex items-baseline gap-1 mb-4">
-        <span class="dsp-lg text-[40px] leading-[1.05] text-black lg:text-[48px]">490,000đ</span><span class="text-[13px] text-shade-50">(~$20)/mo</span>
+        <span class="dsp-lg text-[40px] leading-[1.05] text-black lg:text-[48px]"><span class="i18n"><span lang="en">490,000đ</span><span lang="vi">490.000 đ</span></span></span><span class="text-[13px] text-shade-50"><span class="i18n"><span lang="en">(~$20)/mo</span><span lang="vi">(~20 USD)/tháng</span></span></span>
       </div>
       <ul class="space-y-2 text-[14px] flex-1 text-black">
-        <li>✓ 500 input invoices / month</li>
-        <li>✓ Vendor tax status screening</li>
-        <li>✓ Payment slip discrepancy alerts</li>
-        <li>✓ Excel audit report export</li>
-        <li>✓ Email support within 24 business hours</li>
+        <li><span class="i18n"><span lang="en">✓ 500 input invoices / month</span><span lang="vi">✓ 500 hóa đơn đầu vào / tháng</span></span></li>
+        <li><span class="i18n"><span lang="en">✓ Vendor tax status screening</span><span lang="vi">✓ Quét trạng thái thuế người bán</span></span></li>
+        <li><span class="i18n"><span lang="en">✓ Payment slip discrepancy alerts</span><span lang="vi">✓ Cảnh báo lệch chứng từ thanh toán</span></span></li>
+        <li><span class="i18n"><span lang="en">✓ Excel audit report export</span><span lang="vi">✓ Xuất báo cáo kiểm toán Excel</span></span></li>
+        <li><span class="i18n"><span lang="en">✓ Email support within 24 business hours</span><span lang="vi">✓ Hỗ trợ qua email trong 24 giờ làm việc</span></span></li>
       </ul>
-      <a href="#contact" class="mt-6 btn-pill btn-out-light min-h-[44px]">Start 14-Day Trial</a>
+      <a href="#contact" class="mt-6 btn-pill btn-out-light min-h-[44px]"><span class="i18n"><span lang="en">Start 14-Day Trial</span><span lang="vi">Dùng thử 14 ngày</span></span></a>
     </div>
 
     <!-- Tier 2 -->
     <div class="flex flex-col p-6 lg:p-7 bg-aloe rounded-xl relative text-black">
-      <span class="absolute -top-3 left-8 tag-mint font-medium">Recommended</span>
-      <div class="h-xl text-black mb-1">Professional</div>
-      <div class="text-[13.5px] text-black/70 mb-4">Trading, manufacturing & multi-vendor operations.</div>
+      <span class="absolute -top-3 left-8 tag-mint font-medium"><span class="i18n"><span lang="en">Recommended</span><span lang="vi">Được chọn nhiều</span></span></span>
+      <div class="h-xl text-black mb-1"><span class="i18n"><span lang="en">Professional</span><span lang="vi">Chuyên nghiệp</span></span></div>
+      <div class="text-[13.5px] text-black/70 mb-4"><span class="i18n"><span lang="en">Trading, manufacturing & multi-vendor operations.</span><span lang="vi">Thương mại, sản xuất & vận hành nhiều nhà cung cấp.</span></span></div>
       <div class="flex items-baseline gap-1 mb-4">
-        <span class="dsp-lg text-[40px] leading-[1.05] text-black lg:text-[48px]">1,490,000đ</span><span class="text-[13px] text-black/70">(~$60)/mo</span>
+        <span class="dsp-lg text-[40px] leading-[1.05] text-black lg:text-[48px]"><span class="i18n"><span lang="en">1,490,000đ</span><span lang="vi">1.490.000 đ</span></span></span><span class="text-[13px] text-black/70"><span class="i18n"><span lang="en">(~$60)/mo</span><span lang="vi">(~60 USD)/tháng</span></span></span>
       </div>
       <ul class="space-y-2 text-[14px] flex-1 text-black">
-        <li>✓ 3,000 invoices / month</li>
-        <li>✓ Bank statement & payment order matching</li>
-        <li>✓ Direct export for MISA, FAST, Bravo, SAP</li>
-        <li>✓ Instant alerts via Telegram & email</li>
-        <li>✓ Same-day priority support</li>
+        <li><span class="i18n"><span lang="en">✓ 3,000 invoices / month</span><span lang="vi">✓ 3.000 hóa đơn / tháng</span></span></li>
+        <li><span class="i18n"><span lang="en">✓ Bank statement & payment order matching</span><span lang="vi">✓ Đối soát sao kê & ủy nhiệm chi</span></span></li>
+        <li><span class="i18n"><span lang="en">✓ Direct export for MISA, FAST, Bravo, SAP</span><span lang="vi">✓ Xuất trực tiếp cho MISA, FAST, Bravo, SAP</span></span></li>
+        <li><span class="i18n"><span lang="en">✓ Instant alerts via Telegram & email</span><span lang="vi">✓ Cảnh báo tức thì qua Telegram & email</span></span></li>
+        <li><span class="i18n"><span lang="en">✓ Same-day priority support</span><span lang="vi">✓ Hỗ trợ ưu tiên trong ngày</span></span></li>
       </ul>
-      <a href="#contact" class="mt-6 btn-pill btn-aloe min-h-[44px]">Start Free Trial</a>
+      <a href="#contact" class="mt-6 btn-pill btn-aloe min-h-[44px]"><span class="i18n"><span lang="en">Start Free Trial</span><span lang="vi">Dùng thử miễn phí</span></span></a>
     </div>
 
     <!-- Tier 3 -->
     <div class="flex flex-col card-light p-6 lg:p-7">
-      <div class="h-xl text-black mb-1">Enterprise</div>
-      <div class="text-[13.5px] text-shade-50 mb-4">Retail chains, conglomerates, and regional MNCs.</div>
+      <div class="h-xl text-black mb-1"><span class="i18n"><span lang="en">Enterprise</span><span lang="vi">Doanh nghiệp</span></span></div>
+      <div class="text-[13.5px] text-shade-50 mb-4"><span class="i18n"><span lang="en">Retail chains, conglomerates, and regional MNCs.</span><span lang="vi">Chuỗi bán lẻ, tập đoàn & tập đoàn đa quốc gia khu vực.</span></span></div>
       <div class="flex items-baseline gap-1 mb-4">
-        <span class="dsp-lg text-[40px] leading-[1.05] text-black lg:text-[48px]">Custom Quote</span>
+        <span class="dsp-lg text-[40px] leading-[1.05] text-black lg:text-[48px]"><span class="i18n"><span lang="en">Custom Quote</span><span lang="vi">Báo giá riêng</span></span></span>
       </div>
       <ul class="space-y-2 text-[14px] flex-1 text-black">
-        <li>✓ Unlimited invoice volume</li>
-        <li>✓ Custom ERP integrations (SAP, Oracle, NetSuite)</li>
-        <li>✓ Dedicated onboarding & team training</li>
-        <li>✓ Custom SLA & enterprise DPA terms</li>
+        <li><span class="i18n"><span lang="en">✓ Unlimited invoice volume</span><span lang="vi">✓ Không giới hạn số lượng hóa đơn</span></span></li>
+        <li><span class="i18n"><span lang="en">✓ Custom ERP integrations (SAP, Oracle, NetSuite)</span><span lang="vi">✓ Tích hợp ERP tùy chỉnh (SAP, Oracle, NetSuite)</span></span></li>
+        <li><span class="i18n"><span lang="en">✓ Dedicated onboarding & team training</span><span lang="vi">✓ Chuyển giao & đào tạo riêng cho đội ngũ</span></span></li>
+        <li><span class="i18n"><span lang="en">✓ Custom SLA & enterprise DPA terms</span><span lang="vi">✓ SLA & điều khoản DPA doanh nghiệp tùy chỉnh</span></span></li>
       </ul>
-      <a href="#contact" class="mt-6 btn-pill btn-out-light min-h-[44px]">Contact Us</a>
+      <a href="#contact" class="mt-6 btn-pill btn-out-light min-h-[44px]"><span class="i18n"><span lang="en">Contact Us</span><span lang="vi">Liên hệ</span></span></a>
     </div>
   </div>
 </div>
@@ -583,25 +598,25 @@ details[open] summary span.ind{transform:rotate(45deg)}
 <section id="integrations" class="py-12 lg:py-16 bg-cream border-b border-line">
 <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
   <div class="max-w-[720px] mb-8">
-    <div class="eyebrow text-shade-60 mb-2">Compatibility</div>
-    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black">Connects with your existing finance stack</h2>
+    <div class="eyebrow text-shade-60 mb-2"><span class="i18n"><span lang="en">Compatibility</span><span lang="vi">Tương thích</span></span></div>
+    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black"><span class="i18n"><span lang="en">Connects with your existing finance stack</span><span lang="vi">Kết nối với hệ thống tài chính bạn đang dùng</span></span></h2>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
     <div class="card-light p-5">
-      <div class="eyebrow text-shade-50 mb-2">Input</div>
-      <h3 class="h-md text-black mb-1">E-Invoice Systems</h3>
-      <p class="text-[14px] leading-[1.5] text-black">Supports XML/HTML/PDF files from certified invoice vendors.</p>
+      <div class="eyebrow text-shade-50 mb-2"><span class="i18n"><span lang="en">Input</span><span lang="vi">Đầu vào</span></span></div>
+      <h3 class="h-md text-black mb-1"><span class="i18n"><span lang="en">E-Invoice Systems</span><span lang="vi">Hệ thống hóa đơn điện tử</span></span></h3>
+      <p class="text-[14px] leading-[1.5] text-black"><span class="i18n"><span lang="en">Supports XML/HTML/PDF files from certified invoice vendors.</span><span lang="vi">Hỗ trợ file XML/HTML/PDF từ nhà cung cấp hóa đơn được cấp phép.</span></span></p>
     </div>
     <div class="card-light p-5">
-      <div class="eyebrow text-shade-50 mb-2">Payment</div>
-      <h3 class="h-md text-black mb-1">Bank Statements</h3>
-      <p class="text-[14px] leading-[1.5] text-black">Matches payment orders and bank statement feeds across commercial banks.</p>
+      <div class="eyebrow text-shade-50 mb-2"><span class="i18n"><span lang="en">Payment</span><span lang="vi">Thanh toán</span></span></div>
+      <h3 class="h-md text-black mb-1"><span class="i18n"><span lang="en">Bank Statements</span><span lang="vi">Sao kê ngân hàng</span></span></h3>
+      <p class="text-[14px] leading-[1.5] text-black"><span class="i18n"><span lang="en">Matches payment orders and bank statement feeds across commercial banks.</span><span lang="vi">Đối chiếu ủy nhiệm chi và sao kê từ các ngân hàng thương mại.</span></span></p>
     </div>
     <div class="card-light p-5">
-      <div class="eyebrow text-shade-50 mb-2">Output</div>
-      <h3 class="h-md text-black mb-1">Accounting & ERP</h3>
-      <p class="text-[14px] leading-[1.5] text-black">Exports reconciled data to MISA, FAST, Bravo, SAP, and NetSuite.</p>
+      <div class="eyebrow text-shade-50 mb-2"><span class="i18n"><span lang="en">Output</span><span lang="vi">Đầu ra</span></span></div>
+      <h3 class="h-md text-black mb-1"><span class="i18n"><span lang="en">Accounting & ERP</span><span lang="vi">Kế toán & ERP</span></span></h3>
+      <p class="text-[14px] leading-[1.5] text-black"><span class="i18n"><span lang="en">Exports reconciled data to MISA, FAST, Bravo, SAP, and NetSuite.</span><span lang="vi">Xuất dữ liệu đã đối soát sang MISA, FAST, Bravo, SAP, NetSuite.</span></span></p>
     </div>
   </div>
 </div>
@@ -611,58 +626,58 @@ details[open] summary span.ind{transform:rotate(45deg)}
 <section id="faq" class="py-12 lg:py-16 bg-cream border-b border-line">
 <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
   <div class="max-w-[720px] mb-8">
-    <div class="eyebrow text-shade-60 mb-2">FAQ</div>
-    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black">Frequently Asked Questions</h2>
+    <div class="eyebrow text-shade-60 mb-2"><span class="i18n"><span lang="en">FAQ</span><span lang="vi">Hỏi &amp; đáp</span></span></div>
+    <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black"><span class="i18n"><span lang="en">Frequently Asked Questions</span><span lang="vi">Câu hỏi thường gặp</span></span></h2>
   </div>
 
   <div class="max-w-3xl space-y-3">
     <details class="card-light p-5 group cursor-pointer">
       <summary class="flex justify-between items-center text-[16px] font-medium text-black list-none">
-        <span>How does Vuahem detect suspended or closed vendors?</span>
+        <span><span class="i18n"><span lang="en">How does Vuahem detect suspended or closed vendors?</span><span lang="vi">Vuahem phát hiện người bán ngừng hoạt động hoặc đóng MST bằng cách nào?</span></span></span>
         <span class="ind font-mono text-[20px] text-shade-50">+</span>
       </summary>
       <p class="mt-3 text-[14px] text-shade-70 leading-[1.6]">
-        Vuahem continuously updates official tax administration gazettes and registry statuses from tax authority databases. The engine compares the vendor's legal operational status on the specific date the invoice was digitally issued.
+        <span class="i18n"><span lang="en">Vuahem continuously updates official tax administration gazettes and registry statuses from tax authority databases. The engine compares the vendor's legal operational status on the specific date the invoice was digitally issued.</span><span lang="vi">Vuahem cập nhật liên tục thông báo và trạng thái đăng ký doanh nghiệp từ cơ sở dữ liệu của cơ quan thuế. Engine so sánh trạng thái pháp lý của người bán tại đúng thời điểm hóa đơn được phát hành.</span></span>
       </p>
     </details>
 
     <details class="card-light p-5 group cursor-pointer">
       <summary class="flex justify-between items-center text-[16px] font-medium text-black list-none">
-        <span>Does Vuahem require direct write access to our accounting database?</span>
+        <span><span class="i18n"><span lang="en">Does Vuahem require direct write access to our accounting database?</span><span lang="vi">Vuahem có cần quyền ghi trực tiếp vào cơ sở dữ liệu kế toán của tôi không?</span></span></span>
         <span class="ind font-mono text-[20px] text-shade-50">+</span>
       </summary>
       <p class="mt-3 text-[14px] text-shade-70 leading-[1.6]">
-        No. Vuahem is strictly non-intrusive. Data ingestion occurs via encrypted file drop (XML/PDF/CSV) or read-only API connectors. Your accounting records and ERP databases remain untouched.
+        <span class="i18n"><span lang="en">No. Vuahem is strictly non-intrusive. Data ingestion occurs via encrypted file drop (XML/PDF/CSV) or read-only API connectors. Your accounting records and ERP databases remain untouched.</span><span lang="vi">Không. Vuahem hoàn toàn không can thiệp vào hệ thống. Dữ liệu được nạp qua đường truyền file mã hóa (XML/PDF/CSV) hoặc kết nối API chỉ đọc. Dữ liệu kế toán và cơ sở dữ liệu ERP của bạn giữ nguyên.</span></span>
       </p>
     </details>
 
     <details class="card-light p-5 group cursor-pointer">
       <summary class="flex justify-between items-center text-[16px] font-medium text-black list-none">
-        <span>Which non-cash payment thresholds are audited?</span>
+        <span><span class="i18n"><span lang="en">Which non-cash payment thresholds are audited?</span><span lang="vi">Ngưỡng thanh toán không dùng tiền mặt nào được đối chiếu?</span></span></span>
         <span class="ind font-mono text-[20px] text-shade-50">+</span>
       </summary>
       <p class="mt-3 text-[14px] text-shade-70 leading-[1.6]">
-        The rule engine validates statutory non-cash payment rules (including standard 20M+ VND thresholds and updated statutory decrees), cross-matching wire transfer beneficiary account names against supplier tax entities.
+        <span class="i18n"><span lang="en">The rule engine validates statutory non-cash payment rules (including standard 20M+ VND thresholds and updated statutory decrees), cross-matching wire transfer beneficiary account names against supplier tax entities.</span><span lang="vi">Rule engine kiểm tra quy định thanh toán không dùng tiền mặt (bao gồm ngưỡng 20 triệu đồng trở lên và các nghị định hiện hành), đối chiếu chéo tên tài khoản người thụ hưởng với thông tin mã số thuế của nhà cung cấp.</span></span>
       </p>
     </details>
 
     <details class="card-light p-5 group cursor-pointer">
       <summary class="flex justify-between items-center text-[16px] font-medium text-black list-none">
-        <span>What compliance standards and SLAs do you support?</span>
+        <span><span class="i18n"><span lang="en">What compliance standards and SLAs do you support?</span><span lang="vi">Bạn hỗ trợ chuẩn tuân thủ và SLA nào?</span></span></span>
         <span class="ind font-mono text-[20px] text-shade-50">+</span>
       </summary>
       <p class="mt-3 text-[14px] text-shade-70 leading-[1.6]">
-        We adhere to Singapore Personal Data Protection Act (PDPA) and Vietnam Decree 13/2023 frameworks. Systems are hosted in Tier-III certified regional facilities with AES-256 encryption. Enterprise tiers include a 99.9% uptime SLA and dedicated support engineers.
+        <span class="i18n"><span lang="en">We adhere to Singapore Personal Data Protection Act (PDPA) and Vietnam Decree 13/2023 frameworks. Systems are hosted in Tier-III certified regional facilities with AES-256 encryption. Enterprise tiers include a 99.9% uptime SLA and dedicated support engineers.</span><span lang="vi">Chúng tôi tuân thủ Đạo luật Bảo vệ Dữ liệu Cá nhân Singapore (PDPA) và Nghị định 13/2023 của Việt Nam. Hệ thống đặt tại các trung tâm đạt chuẩn Tier-III trong khu vực, mã hóa AES-256. Gói Doanh nghiệp gồm SLA uptime 99,9% và kỹ sư hỗ trợ riêng.</span></span>
       </p>
     </details>
 
     <details class="card-light p-5 group cursor-pointer">
       <summary class="flex justify-between items-center text-[16px] font-medium text-black list-none">
-        <span>How does the complimentary pilot trial work?</span>
+        <span><span class="i18n"><span lang="en">How does the complimentary pilot trial work?</span><span lang="vi">Gửi chạy thử pilot miễn phí hoạt động thế nào?</span></span></span>
         <span class="ind font-mono text-[20px] text-shade-50">+</span>
       </summary>
       <p class="mt-3 text-[14px] text-shade-70 leading-[1.6]">
-        You submit a sample batch of 50–100 invoices from a recent period. We run the automated audit and return a detailed discrepancy report with flagged items within 2 business days—zero contract required.
+        <span class="i18n"><span lang="en">You submit a sample batch of 50–100 invoices from a recent period. We run the automated audit and return a detailed discrepancy report with flagged items within 2 business days—zero contract required.</span><span lang="vi">Bạn gửi một mẫu 50–100 hóa đơn của kỳ gần nhất. Chúng tôi chạy rà soát tự động và trả báo cáo chi tiết các mục bất thường trong vòng 2 ngày làm việc — không yêu cầu hợp đồng.</span></span>
       </p>
     </details>
   </div>
@@ -674,12 +689,12 @@ details[open] summary span.ind{transform:rotate(45deg)}
 <div class="max-w-[1200px] mx-auto px-5 lg:px-8">
   <div class="card-light p-6 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
     <div class="lg:col-span-7">
-      <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black">Run a complimentary audit on one period</h2>
-      <p class="text-[15px] text-black mt-3 leading-[1.5]">Submit 50–100 recent invoices. Receive your risk report with flagged items within 2 business days—zero system integration needed.</p>
+      <h2 class="dsp-lg text-[26px] lg:text-[34px] leading-[1.12] text-black"><span class="i18n"><span lang="en">Run a complimentary audit on one period</span><span lang="vi">Chạy rà soát miễn phí một kỳ</span></span></h2>
+      <p class="text-[15px] text-black mt-3 leading-[1.5]"><span class="i18n"><span lang="en">Submit 50–100 recent invoices. Receive your risk report with flagged items within 2 business days—zero system integration needed.</span><span lang="vi">Gửi 50–100 hóa đơn gần nhất. Nhận báo cáo rủi ro kèm các mục bị đánh dấu trong 2 ngày làm việc — không cần tích hợp hệ thống.</span></span></p>
     </div>
     <div class="lg:col-span-5 space-y-3 text-[14px] text-black">
-      <div class="p-4 rounded-lg bg-cream border border-line">Email: <span class="font-mono">demo@vuahem.lol</span> · 1 business day response time.</div>
-      <a href="mailto:demo@vuahem.lol?subject=Demo%20Vuahem" class="btn-pill btn-solid w-full min-h-[44px]">Submit Invoices for Trial Run</a>
+      <div class="p-4 rounded-lg bg-cream border border-line">Email: <span class="font-mono">demo@vuahem.lol</span> <span class="i18n"><span lang="en">· 1 business day response time.</span><span lang="vi">· phản hồi trong 1 ngày làm việc.</span></span></div>
+      <a href="mailto:demo@vuahem.lol?subject=Demo%20Vuahem" class="btn-pill btn-solid w-full min-h-[44px]"><span class="i18n"><span lang="en">Submit Invoices for Trial Run</span><span lang="vi">Gửi kỳ hóa đơn để chạy thử</span></span></a>
     </div>
   </div>
 </div>
@@ -694,54 +709,54 @@ details[open] summary span.ind{transform:rotate(45deg)}
     <!-- Corporate Info -->
     <div class="md:col-span-5 space-y-3">
       <div class="text-[17px] font-medium text-white tracking-[.42px]">Vuahem <span class="text-cool-c1 font-mono text-[13px]">vuahem.lol</span></div>
-      <p class="text-[13.5px] leading-[1.55] text-white/80">Automated pre-filing input VAT and tax invoice risk audit platform.</p>
+      <p class="text-[13.5px] leading-[1.55] text-white/80"><span class="i18n"><span lang="en">Automated pre-filing input VAT and tax invoice risk audit platform.</span><span lang="vi">Nền tảng rà soát rủi ro hóa đơn đầu vào & thuế tự động trước khi nộp tờ khai.</span></span></p>
       
       <div class="text-[12.5px] pt-1 text-cool-c1 space-y-2">
         <div>
-          <strong class="text-white/95">Singapore Global Headquarters:</strong><br>
+          <strong class="text-white/95"><span class="i18n"><span lang="en">Singapore Global Headquarters:</span><span lang="vi">Trụ sở chính Singapore:</span></span></strong><br>
           Vuahem Technologies Pte. Ltd. (UEN: 202618920K)<br>
           68 Circular Road, #02-01, Singapore 049422<br>
-          Tel: (+65) 6715 8920 · Email: contact@vuahem.lol
+          <span class="i18n"><span lang="en">Tel: </span><span lang="vi">Điện thoại: </span></span>(+65) 6715 8920 · Email: contact@vuahem.lol
         </div>
         <div>
-          <strong class="text-white/95">Vietnam Technology & Operations Center:</strong><br>
-          Vuahem Vietnam Technical Operations<br>
-          Level 9, Keangnam Landmark 72, Pham Hung, Nam Tu Liem, Hanoi<br>
-          Tel: (+84) 24 7300 8920 · Email: vietnam@vuahem.lol
+          <strong class="text-white/95"><span class="i18n"><span lang="en">Vietnam Technology & Operations Center:</span><span lang="vi">Trung tâm Kỹ thuật & Vận hành Việt Nam:</span></span></strong><br>
+          <span class="i18n"><span lang="en">Vuahem Vietnam Technical Operations</span><span lang="vi">Chi nhánh Kỹ thuật & Vận hành Vuahem tại Việt Nam</span></span><br>
+          <span class="i18n"><span lang="en">Level 9, Keangnam Landmark 72, Pham Hung, Nam Tu Liem, Hanoi</span><span lang="vi">Tầng 9, Keangnam Landmark 72, Phạm Hùng, Nam Từ Liêm, Hà Nội</span></span><br>
+          <span class="i18n"><span lang="en">Tel: </span><span lang="vi">Điện thoại: </span></span>(+84) 24 7300 8920 · Email: vietnam@vuahem.lol
         </div>
       </div>
     </div>
 
     <!-- Navigation Column -->
     <div class="md:col-span-2">
-      <div class="eyebrow text-white mb-3">Product</div>
+      <div class="eyebrow text-white mb-3"><span class="i18n"><span lang="en">Product</span><span lang="vi">Sản phẩm</span></span></div>
       <div class="space-y-1 text-[13.5px]">
-        <a href="#scanner" class="block py-1.5 text-white">Live Demo</a>
-        <a href="#how" class="block py-1.5 text-cool-c1 hover:text-white">Workflow</a>
-        <a href="#roi" class="block py-1.5 text-cool-c1 hover:text-white">Case Studies</a>
-        <a href="#pricing" class="block py-1.5 text-cool-c1 hover:text-white">Pricing</a>
-        <a href="#integrations" class="block py-1.5 text-cool-c1 hover:text-white">Integrations</a>
+        <a href="#scanner" class="block py-1.5 text-white"><span class="i18n"><span lang="en">Live Demo</span><span lang="vi">Demo trực tiếp</span></span></a>
+        <a href="#how" class="block py-1.5 text-cool-c1 hover:text-white"><span class="i18n"><span lang="en">Workflow</span><span lang="vi">Quy trình</span></span></a>
+        <a href="#roi" class="block py-1.5 text-cool-c1 hover:text-white"><span class="i18n"><span lang="en">Case Studies</span><span lang="vi">Ca nghiên cứu</span></span></a>
+        <a href="#pricing" class="block py-1.5 text-cool-c1 hover:text-white"><span class="i18n"><span lang="en">Pricing</span><span lang="vi">Bảng giá</span></span></a>
+        <a href="#integrations" class="block py-1.5 text-cool-c1 hover:text-white"><span class="i18n"><span lang="en">Integrations</span><span lang="vi">Tích hợp</span></span></a>
       </div>
     </div>
 
     <!-- Developers Column -->
     <div class="md:col-span-2">
-      <div class="eyebrow text-white mb-3">Developers</div>
+      <div class="eyebrow text-white mb-3"><span class="i18n"><span lang="en">Developers</span><span lang="vi">Nhà phát triển</span></span></div>
       <div class="space-y-1 text-[13.5px] text-cool-c1">
-        <a href="#scanner" class="block py-1.5 hover:text-white">API Reference</a>
-        <a href="#security" class="block py-1.5 hover:text-white">Security Docs</a>
-        <a href="#how" class="block py-1.5 hover:text-white">Schema Models</a>
-        <span class="block py-1.5 text-white/40">Status: Operational</span>
+        <a href="#scanner" class="block py-1.5 hover:text-white"><span class="i18n"><span lang="en">API Reference</span><span lang="vi">Tài liệu API</span></span></a>
+        <a href="#security" class="block py-1.5 hover:text-white"><span class="i18n"><span lang="en">Security Docs</span><span lang="vi">Tài liệu bảo mật</span></span></a>
+        <a href="#how" class="block py-1.5 hover:text-white"><span class="i18n"><span lang="en">Schema Models</span><span lang="vi">Mô hình dữ liệu</span></span></a>
+        <span class="block py-1.5 text-white/40"><span class="i18n"><span lang="en">Status: Operational</span><span lang="vi">Trạng thái: Đang hoạt động</span></span></span>
       </div>
     </div>
 
     <!-- Legal Column -->
     <div class="md:col-span-3">
-      <div class="eyebrow text-white mb-3">Governance</div>
+      <div class="eyebrow text-white mb-3"><span class="i18n"><span lang="en">Governance</span><span lang="vi">Pháp lý & Quản trị</span></span></div>
       <div class="space-y-1 text-[13px] text-cool-c1">
-        <a href="#security" class="block py-1.5 text-white">Data Privacy Policy</a>
-        <p class="leading-[1.5]">Enterprise DPA & Service Terms available upon request.</p>
-        <p class="text-[11.5px] text-cool-c2 pt-1 leading-[1.4]">Pre-filing risk audit signals do not replace official statutory tax filings or determinations.</p>
+        <a href="#security" class="block py-1.5 text-white"><span class="i18n"><span lang="en">Data Privacy Policy</span><span lang="vi">Chính sách bảo mật dữ liệu</span></span></a>
+        <p class="leading-[1.5]"><span class="i18n"><span lang="en">Enterprise DPA & Service Terms available upon request.</span><span lang="vi">Cung cấp DPA & Điều khoản dịch vụ doanh nghiệp theo yêu cầu.</span></span></p>
+        <p class="text-[11.5px] text-cool-c2 pt-1 leading-[1.4]"><span class="i18n"><span lang="en">Pre-filing risk audit signals do not replace official statutory tax filings or determinations.</span><span lang="vi">Cảnh báo rà soát trước khi nộp không thay thế tờ khai và kết luận thuế chính thức.</span></span></p>
       </div>
     </div>
   </div>
@@ -753,14 +768,14 @@ details[open] summary span.ind{transform:rotate(45deg)}
       <span>·</span>
       <span>Singapore 🇸🇬</span>
       <span>·</span>
-      <span>Vietnam 🇻🇳</span>
+      <span><span class="i18n"><span lang="en">Vietnam 🇻🇳</span><span lang="vi">Việt Nam 🇻🇳</span></span></span>
     </div>
     <div class="flex items-center gap-3 font-mono text-[11px] text-cool-c3">
-      <span>ISO 27001 Ready</span>
+      <span><span class="i18n"><span lang="en">ISO 27001 Ready</span><span lang="vi">Sẵn sàng ISO 27001</span></span></span>
       <span>·</span>
-      <span>SOC 2 Type II Architecture</span>
+      <span><span class="i18n"><span lang="en">SOC 2 Type II Architecture</span><span lang="vi">Kiến trúc SOC 2 Type II</span></span></span>
       <span>·</span>
-      <span>PDPA & Decree 13</span>
+      <span><span class="i18n"><span lang="en">PDPA & Decree 13</span><span lang="vi">PDPA & Nghị định 13</span></span></span>
     </div>
   </div>
 </div>
@@ -772,28 +787,40 @@ document.getElementById('menuBtn').addEventListener('click',function(){
 });
 document.querySelectorAll('#mobileNav a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('mobileNav').hidden=true;document.getElementById('menuBtn').setAttribute('aria-expanded','false');}));
 
+/* ══════════ BILINGUAL RUNTIME (single source: EN default, VI on switch) ══════════
+   Static copy swaps via .i18n pairs + CSS. Anything this script renders carries
+   {en, vi} pairs and is re-rendered through tx() when the language changes. */
+const T=(en,vi)=>({en:en,vi:vi});
+function lang(){return document.documentElement.lang==='vi'?'vi':'en';}
+function tx(v){return typeof v==='object'?(s=>s[lang()]||s.en)(v):v;}
+const TITLE=T('Vuahem (vuahem.lol) — Pre-Filing VAT & Invoice Risk Scanner',
+              'Vuahem (vuahem.lol) — Rà soát rủi ro hóa đơn đầu vào trước khi nộp tờ khai');
+const HOURS=T('hours','giờ');
+
+/* Live scanner scenarios. Rows: [ok|warn, text[en,vi]]. */
 const DEMOS={
-  clean:{mst:'0004512398',score:90,label:'Low Risk (Compliant)',rows:[
-    ['✓','Tax ID 0004512398: Active status, no public risk flags detected.'],
-    ['✓','Bank payment order matches beneficiary name and total invoice value.'],
-    ['✓','Complete documentation package ready for VAT deduction.']]},
-  risky:{mst:'0009999999',score:20,label:'High Risk (Suspended Seller)',rows:[
-    ['!','Seller suspended operations prior to invoice issuance date.'],
-    ['!','Invoice issued after tax authority official announcement date.'],
-    ['!','Recommendation: Hold tax deduction pending clarification.']]},
-  cash:{mst:'0007712345',score:50,label:'Moderate Risk (Missing Bank Slip)',rows:[
-    ['✓','Seller tax ID is active with no statutory blacklists.'],
-    ['!','Payment exceeding non-cash threshold lacks bank transfer order.'],
-    ['!','Recommendation: Attach bank payment slip before fiscal close.']]}
+  clean:{mst:'0004512398',score:90,label:T('Low Risk (Compliant)','Rủi ro thấp (Hợp lệ)'),rows:[
+    ['✓',T('Tax ID 0004512398: Active status, no public risk flags detected.','MST 0004512398: Đang hoạt động, không có cảnh báo rủi ro công khai.')],
+    ['✓',T('Bank payment order matches beneficiary name and total invoice value.','Ủy nhiệm chi khớp tên người thụ hưởng và tổng giá trị hóa đơn.')],
+    ['✓',T('Complete documentation package ready for VAT deduction.','Bộ hồ sơ đầy đủ, đủ điều kiện khấu trừ thuế GTGT.')]]},
+  risky:{mst:'0009999999',score:20,label:T('High Risk (Suspended Seller)','Rủi ro cao (Người bán ngừng hoạt động)'),rows:[
+    ['!',T('Seller suspended operations prior to invoice issuance date.','Người bán ngừng hoạt động trước ngày xuất hóa đơn.')],
+    ['!',T('Invoice issued after tax authority official announcement date.','Hóa đơn xuất sau ngày cơ quan thuế công bố chính thức.')],
+    ['!',T('Recommendation: Hold tax deduction pending clarification.','Khuyến nghị: Tạm hoãn khấu trừ chờ làm rõ.')]]},
+  cash:{mst:'0007712345',score:50,label:T('Moderate Risk (Missing Bank Slip)','Rủi ro trung bình (Thiếu UNC)'),rows:[
+    ['✓',T('Seller tax ID is active with no statutory blacklists.','MST người bán đang hoạt động, không nằm trong danh sách cảnh báo.')],
+    ['!',T('Payment exceeding non-cash threshold lacks bank transfer order.','Khoản chi trên ngưỡng thanh toán không dùng tiền mặt nhưng thiếu ủy nhiệm chi.')],
+    ['!',T('Recommendation: Attach bank payment slip before fiscal close.','Khuyến nghị: Bổ sung ủy nhiệm chi trước khi khóa sổ.')]]}
 };
-function revealResult(){if(window.innerWidth<1024){document.getElementById('scanOut').scrollIntoView({behavior:'smooth',block:'center'});}}
 const inp=document.getElementById('mstInput'),out=document.getElementById('scanOut'),idle=document.getElementById('scanIdle'),
       line=document.getElementById('scanLine'),bar=document.getElementById('scoreBar'),scoreLabel=document.getElementById('scoreLabel');
+let LAST='risky';
 
-function tagFor(c){return c==='✓'?'PASS':'WARNING';}
+function tagFor(c){return c==='✓'?T('PASS','ĐẠT'):T('WARNING','CẢNH BÁO');}
 function run(demoKey,mst){
   const key=demoKey||(mst==='0009999999'?'risky':mst==='0007712345'?'cash':'clean');
   const d=DEMOS[key];
+  LAST=key;
   inp.value=d.mst;
   idle.hidden=true;
   out.hidden=false;
@@ -801,12 +828,12 @@ function run(demoKey,mst){
   d.rows.forEach(r=>{
     const pass=(r[0]==='✓');
     out.innerHTML+='<div class="rounded-lg p-2.5 flex gap-2.5 items-baseline '+(pass?'bg-[#1e2c31]/40 border border-line-dark':'bg-white')+'">'+
-      '<span class="shrink-0 px-2 py-0.5 rounded font-mono text-[10px] '+(pass?'text-white/80':'bg-black text-white font-semibold')+'">'+tagFor(r[0])+'</span>'+
-      '<span class="'+(pass?'text-white/85':'text-black font-medium')+'">'+r[1]+'</span></div>';
+      '<span class="shrink-0 px-2 py-0.5 rounded font-mono text-[10px] '+(pass?'text-white/80':'bg-black text-white font-semibold')+'">'+tx(tagFor(r[0]))+'</span>'+
+      '<span class="'+(pass?'text-white/85':'text-black font-medium')+'">'+tx(r[1])+'</span></div>';
   });
   bar.style.width=d.score+'%';
-  scoreLabel.textContent=d.label;
-  revealResult();
+  scoreLabel.textContent=tx(d.label);
+  if(window.innerWidth<1024){document.getElementById('scanOut').scrollIntoView({behavior:'smooth',block:'center'});}
 }
 document.querySelectorAll('.demoBtn').forEach(b=>b.addEventListener('click',()=>run(b.dataset.demo)));
 document.getElementById('runScan').addEventListener('click',()=>run(null,(inp.value||'').replace(/\D/g,'')));
@@ -816,14 +843,32 @@ const inv=document.getElementById('invRange'),fl=document.getElementById('flagRa
 function calc(){
   const n=+inv.value,p=+fl.value,flag=Math.max(1,Math.round(n*p/100));
   const saved=Math.max(0,Math.round((n*2-flag*25)/60));
-  document.getElementById('invLabel').textContent=n.toLocaleString('en-US');
-  document.getElementById('flagLabel').textContent=p.toLocaleString('en-US')+'%';
-  document.getElementById('outCount').textContent=flag.toLocaleString('en-US');
-  document.getElementById('outHours').textContent=saved+' hours';
+  const loc=lang()==='vi'?'vi-VN':'en-US';
+  document.getElementById('invLabel').textContent=n.toLocaleString(loc);
+  document.getElementById('flagLabel').textContent=p.toLocaleString(loc)+'%';
+  document.getElementById('outCount').textContent=flag.toLocaleString(loc);
+  document.getElementById('outHours').textContent=saved+' '+tx(HOURS);
 }
 document.querySelectorAll('.pres').forEach(b=>b.addEventListener('click',()=>{const t=document.getElementById(b.dataset.t);t.value=b.dataset.v;calc();}));
-[inv,fl].forEach(r=>r.addEventListener('input',calc));calc();
-run('risky');
+[inv,fl].forEach(r=>r.addEventListener('input',calc));
+
+/* Language switch: re-render everything JS owns, then the calculator. */
+function applyLang(){
+  document.title=tx(TITLE);
+  document.querySelectorAll('.langBtn').forEach(b=>b.setAttribute('aria-current',String(b.dataset.lang===lang())));
+  run(LAST);
+  calc();
+}
+function setLang(l){
+  if(l!=='en'&&l!=='vi')return;
+  document.documentElement.lang=l;
+  try{localStorage.setItem('vuahem.lang',l);}catch(e){}
+  applyLang();
+}
+document.querySelectorAll('.langBtn').forEach(b=>b.addEventListener('click',function(){setLang(this.dataset.lang);}));
+try{const saved=localStorage.getItem('vuahem.lang');if(saved==='vi')document.documentElement.lang='vi';}catch(e){}
+applyLang();
 </script>
+
 </body>
 </html>
