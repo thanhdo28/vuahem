@@ -36,7 +36,8 @@ After editing English copy, re-run the builder — it re-wraps new strings and r
 
 ```bash
 python3 tools/build_i18n.py            # rebuild (wraps i18n/pairs.json into index.html)
-python3 tools/build_i18n.py --check    # CI gate: exits 1 on drift, stale keys, or broken language machinery
+python3 tools/build_i18n.py --check    # rebuild-drift report (see make check for the gate)
+make check                       # the gate: verify.py + check_design.py + check_lang.js + verify_i18n.js
 node tools/check_lang.js               # runs the page <script> under a DOM shim; fails if VI render stays English
 ```
 
