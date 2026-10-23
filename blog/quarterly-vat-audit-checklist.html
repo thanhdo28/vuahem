@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist rà soát hóa đơn trước kỳ kê khai thuế quý cho Kế toán trưởng | Vuahem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;420;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink: '#000000',
+        nightElev: '#0a0a0a',
+        surfDark: '#1e2c31',
+        cream: '#fbfbf5',
+        aloe: '#c1fbd4',
+        pistachio: '#d4f9e0',
+        cool: { c1: '#9dabad', c2: '#9797a2', c3: '#bdbdca', mint: '#99b3ad' },
+        shade: { 50: '#71717a', 60: '#52525b', 70: '#3f3f46' },
+        line: '#e4e4e7',
+        'line-dark': 'rgba(255,255,255,0.08)'
+      },
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'sans-serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+.dsp { font-family: 'Inter', sans-serif; font-weight: 330; letter-spacing: -0.025em; font-feature-settings: "ss03"; }
+.i18n > span { display: none; }
+html:not([lang="vi"]) .i18n > span[lang="en"] { display: inline; }
+html[lang="vi"] .i18n > span[lang="vi"] { display: inline; }
+.btn-pill { border-radius: 9999px; display: inline-flex; items-center: center; justify-content: center; font-weight: 500; }
+.btn-solid { background: #ffffff; color: #000000; }
+.btn-solid:hover { background: #d4f9e0; }
+</style>
+</head>
+<body class="bg-black text-white antialiased font-sans">
+
+<!-- Top Bar -->
+<div class="bg-[#050505] text-[11px] font-mono text-cool-c2 py-2 px-5 border-b border-line-dark">
+  <div class="max-w-[880px] mx-auto flex items-center justify-between">
+    <a href="index.html" class="hover:text-white transition">← <span class="i18n"><span lang="en">Back to Blog Index</span><span lang="vi">Quay lại mục Lục Blog</span></span></a>
+    <div class="flex items-center gap-4">
+      <span>Tel: <a href="tel:+84944002809" class="text-white hover:underline font-semibold">0944 002 809</a></span>
+      <span class="text-white/20">|</span>
+      <div class="flex items-center gap-1" role="group" aria-label="Language">
+        <button type="button" id="btn-en" class="px-2 py-0.5 rounded hover:bg-white/10 text-cool-c2">EN</button>
+        <button type="button" id="btn-vi" class="px-2 py-0.5 rounded bg-white/15 text-white font-semibold">TIẾNG VIỆT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="border-b border-line-dark sticky top-0 bg-black/90 backdrop-blur-md z-50">
+  <div class="max-w-[880px] mx-auto px-5 py-4 flex items-center justify-between">
+    <a href="../" class="flex items-center gap-2">
+      <span class="text-[19px] font-medium text-white tracking-tight">Vuahem</span>
+      <span class="text-[11px] font-mono text-cool-c1 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full">Compliance Checklist</span>
+    </a>
+    <a href="../#contact" class="btn-pill btn-solid px-4 py-1.5 text-[12.5px] text-black">
+      <span class="i18n"><span lang="en">Trial Scanner</span><span lang="vi">Dùng thử Scanner</span></span>
+    </a>
+  </div>
+</header>
+
+<!-- Article Header -->
+<div class="py-12 border-b border-line-dark bg-nightElev">
+  <div class="max-w-[880px] mx-auto px-5">
+    <div class="flex items-center gap-3 text-[12px] font-mono text-cool-c2 mb-3">
+      <span class="text-aloe font-semibold">CHECKLIST KẾ TOÁN / AUDIT CHECKLIST</span>
+      <span>·</span>
+      <span>2026-10-09</span>
+      <span>·</span>
+      <span>5 min read</span>
+    </div>
+    <h1 class="dsp text-[32px] sm:text-[42px] text-white leading-tight mb-4">
+      <span class="i18n">
+        <span lang="en">Quarterly VAT Pre-Filing Audit Checklist for Chief Accountants</span>
+        <span lang="vi">Checklist rà soát hóa đơn trước kỳ kê khai thuế quý cho Kế toán trưởng</span>
+      </span>
+    </h1>
+    <div class="text-[13px] text-cool-c1 font-mono">
+      Tác giả / Author: Đội ngũ Kỹ thuật &amp; Pháp chế Vuahem · Hà Nội, Việt Nam
+    </div>
+  </div>
+</div>
+
+<!-- Article Body -->
+<main class="py-14 bg-black">
+  <article class="max-w-[880px] mx-auto px-5 text-[15.5px] text-cool-c1 leading-[1.8] space-y-6">
+
+    <!-- VI Content -->
+    <div class="i18n">
+      <div lang="vi" class="space-y-6">
+        <p class="text-[17px] text-white leading-relaxed font-medium">
+          Hạn nộp Tờ khai thuế GTGT quý (Mẫu 01/GTGT) thường rơi vào ngày cuối cùng của tháng đầu tiên quý tiếp theo (ví dụ: ngày 31/10 cho Quý III). Để tránh việc kê khai các hóa đơn không đủ điều kiện khấu trừ dẫn đến tiền phạt truy thu, dưới đây là bảng kiểm tra thực tế gồm 6 bước mà Kế toán trưởng cần thực hiện trước khi bấm gửi tờ khai lên hệ thống Thuế điện tử (eTax).
+        </p>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          Bước 1: Quét toàn bộ danh sách nhà cung cấp trên cơ sở dữ liệu cơ quan thuế
+        </h2>
+        <p>
+          Trích xuất danh sách tất cả các Mã số thuế (MST) phát sinh mua hàng trong kỳ. Đối chiếu với danh sách thông báo chính thức của cơ quan thuế:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-white/90">
+          <li>Doanh nghiệp có đang trong tình trạng "Đang hoạt động" hay không?</li>
+          <li>Có doanh nghiệp nào bị thông báo "Không hoạt động tại địa chỉ đã đăng ký" (bỏ trốn) hay không?</li>
+          <li>Có doanh nghiệp nào đóng MST hoặc tạm ngừng kinh doanh trong kỳ phát sinh hóa đơn hay không?</li>
+        </ul>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          Bước 2: Phân loại và lọc các hóa đơn từ 20 triệu đồng trở lên
+        </h2>
+        <p>
+          Lọc toàn bộ hóa đơn có tổng thanh toán từ 20.000.000 đ trở lên và đối chiếu với sao kê ngân hàng:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-white/90">
+          <li>Đã có chứng từ ủy nhiệm chi (UNC) chứng minh tiền đã được trích từ tài khoản công ty chuyển sang tài khoản người bán chưa?</li>
+          <li>Tên tài khoản người nhận tiền trên UNC có đúng là tên pháp nhân ghi trên hóa đơn không?</li>
+          <li>Trường hợp thanh toán trả chậm: Hợp đồng kinh tế có quy định rõ điều khoản thanh toán trả chậm hay không?</li>
+        </ul>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          Bước 3: Kiểm tra tính nguyên vẹn của file XML hóa đơn
+        </h2>
+        <p>
+          Không lưu trữ chỉ bằng file PDF. Đảm bảo toàn bộ hóa đơn đầu vào đều có tệp XML gốc đi kèm:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-white/90">
+          <li>Kiểm tra chữ ký số của bên bán có còn hạn và hợp lệ tại thời điểm ký không?</li>
+          <li>Kiểm tra mã của cơ quan thuế đối với hóa đơn có mã (Mã CQT cấp trên file XML có hợp lệ không).</li>
+          <li>Đảm bảo file XML không bị chỉnh sửa (hash signature không bị phá vỡ).</li>
+        </ul>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          Bước 4: Kiểm tra sự phù hợp giữa thuế suất GTGT và danh mục hàng hóa
+        </h2>
+        <p>
+          Rà soát các chính sách giảm thuế GTGT (ví dụ giảm từ 10% xuống 8% theo nghị định của Chính phủ trong từng thời kỳ):
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-white/90">
+          <li>Hàng hóa/dịch vụ mua vào có thuộc đối tượng được giảm thuế GTGT không?</li>
+          <li>Nếu người bán xuất sai thuế suất (xuất 8% cho mặt hàng không được giảm), người mua vẫn có rủi ro bị loại phần chênh lệch khi quyết toán thuế.</li>
+        </ul>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          Bước 5: Lập danh sách hóa đơn nghi ngờ cần tạm hoãn kê khai
+        </h2>
+        <p>
+          Theo quy định quản lý thuế hiện hành, hóa đơn đầu vào nếu phát hiện sai sót hoặc người bán đang bị thanh tra thì <strong>doanh nghiệp hoàn toàn có quyền chưa kê khai ngay trong kỳ</strong>. Doanh nghiệp được kê khai khấu trừ bổ sung bất kỳ lúc nào trước khi cơ quan thuế công bố quyết định thanh tra tại trụ sở.
+        </p>
+        <p>
+          Do đó, nguyên tắc an toàn nhất của Kế toán trưởng là: <em>Hóa đơn nào còn nghi vấn hoặc thiếu UNC chuyển khoản, tạm thời loại ra khỏi kỳ kê khai hiện tại, chờ nhà cung cấp bổ sung đầy đủ hồ sơ mới kê khai vào kỳ sau.</em>
+        </p>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          Bước 6: Khóa sổ và lưu trữ hồ sơ rà soát
+        </h2>
+        <p>
+          Lưu trữ file tổng hợp kết quả rà soát kèm các bằng chứng tra cứu trạng thái CQT tại thời điểm lập tờ khai. Hồ sơ này là căn cứ pháp lý quan trọng nhất bảo vệ Kế toán trưởng và doanh nghiệp khi giải trình quyết toán thuế sau này.
+        </p>
+
+        <div class="p-6 rounded-xl bg-surfDark/60 border border-line-dark text-white space-y-3 mt-8">
+          <div class="text-aloe font-semibold uppercase text-[12px] font-mono">Tự động hóa hoàn toàn với Vuahem</div>
+          <p class="text-[14.5px] leading-relaxed">
+            Thay vì tốn 3–5 ngày thủ công rà soát từng dòng Excel, phần mềm Vuahem tự động thực hiện trọn vẹn 6 bước trên chỉ trong vài phút, xuất báo cáo danh sách hóa đơn rủi ro kèm lý do chi tiết.
+          </p>
+        </div>
+      </div>
+
+      <!-- EN Content -->
+      <div lang="en" class="space-y-6">
+        <p class="text-[17px] text-white leading-relaxed font-medium">
+          The quarterly VAT filing deadline (Form 01/GTGT) in Vietnam typically falls on the final business day of the month following the quarter's close (e.g. October 31 for Q3). To prevent inadvertent deductions of non-compliant invoices, here is a practical 6-step verification checklist for Chief Accountants before final electronic submission.
+        </p>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          Step 1: Screen All Supplier Tax IDs Against Authority Master Registries
+        </h2>
+        <p>
+          Extract all active vendor Tax IDs for the period and cross-reference with official tax department publications:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-white/90">
+          <li>Are all sellers legally marked as "Active and Operating"?</li>
+          <li>Are any suppliers flagged as having abandoned registered business premises?</li>
+          <li>Did any vendor close their tax code during the period prior to invoice issuance?</li>
+        </ul>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          Step 2: Filter and Audit Purchases Exceeding 20M VND
+        </h2>
+        <p>
+          Isolate all invoices with gross totals equal to or exceeding 20,000,000 VND and verify corresponding bank wire slips:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-white/90">
+          <li>Is there an official bank wire confirmation (UNC) showing fund debit from the company's account?</li>
+          <li>Does the payee account name strictly match the registered legal business name of the seller?</li>
+        </ul>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          Step 3: Validate Electronic XML File Integrity and Signatures
+        </h2>
+        <p>
+          Never archive visual PDFs alone. Ensure complete XML files are collected:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-white/90">
+          <li>Confirm digital certificates were unexpired at the timestamp of signing.</li>
+          <li>Verify tax authority authentication codes where applicable.</li>
+        </ul>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          Step 4: Check VAT Rate Reductions Against Statutory Decrees
+        </h2>
+        <p>
+          Review statutory VAT reductions (e.g. 10% reduced to 8% for qualifying commodity groups):
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-white/90">
+          <li>Do the purchased goods qualify for the reduced rate? Misapplied rate deductions are disallowed during tax audits.</li>
+        </ul>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          Step 5: Quarantine Suspicious Invoices from Current Filing
+        </h2>
+        <p>
+          Under tax administration rules, <strong>enterprises are not forced to claim input VAT in the immediate quarter</strong> if doubts exist. You may claim deductions in subsequent quarters once vendor clarification or payment proof is fully resolved.
+        </p>
+        <p>
+          <em>The conservative Chief Accountant rule: If an invoice is flagged or missing proof, hold it out of the current return.</em>
+        </p>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          Step 6: Freeze Audit Trail and Inspection Dossier
+        </h2>
+        <p>
+          Export the final audit reconciliation dossier and freeze tax lookup timestamps as permanent legal evidence for future tax inspections.
+        </p>
+
+        <div class="p-6 rounded-xl bg-surfDark/60 border border-line-dark text-white space-y-3 mt-8">
+          <div class="text-aloe font-semibold uppercase text-[12px] font-mono">Automate the Entire Checklist with Vuahem</div>
+          <p class="text-[14.5px] leading-relaxed">
+            Instead of spending days manually cross-checking Excel rows, Vuahem executes all 6 checklist verification steps in minutes, producing a clean, audit-ready discrepancy dossier.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </article>
+</main>
+
+<!-- Footer -->
+<footer class="py-12 bg-[#050505] border-t border-line-dark text-[13px] text-cool-c2">
+  <div class="max-w-[880px] mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div>
+      <span class="text-white font-medium">Vuahem Technologies Vietnam</span> · Hanoi, Vietnam 🇻🇳<br>
+      <span class="text-[11px] font-mono text-cool-c3">Keangnam Landmark 72, Pham Hung, Hanoi · support@vuahem.lol</span>
+    </div>
+    <div class="flex items-center gap-4 text-[12px]">
+      <a href="index.html" class="hover:text-white transition">Tất cả bài viết</a>
+      <a href="../" class="hover:text-white transition">Trang chủ Vuahem</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function setLanguage(l) {
+  document.documentElement.lang = l;
+  document.getElementById('btn-en').className = l === 'en' ? 'px-2 py-0.5 rounded bg-white/15 text-white font-semibold' : 'px-2 py-0.5 rounded hover:bg-white/10 text-cool-c2';
+  document.getElementById('btn-vi').className = l === 'vi' ? 'px-2 py-0.5 rounded bg-white/15 text-white font-semibold' : 'px-2 py-0.5 rounded hover:bg-white/10 text-cool-c2';
+  try { localStorage.setItem('vuahem.lang', l); } catch(e) {}
+}
+document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
+document.getElementById('btn-vi').addEventListener('click', () => setLanguage('vi'));
+try {
+  const saved = localStorage.getItem('vuahem.lang');
+  if (saved) setLanguage(saved);
+} catch(e) {}
+</script>
+
+</body>
+</html>

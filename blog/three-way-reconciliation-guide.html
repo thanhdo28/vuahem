@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đối soát 3 chiều: Hóa đơn điện tử XML ↔ UNC Ngân hàng ↔ CSDL Thuế | Vuahem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;420;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink: '#000000',
+        nightElev: '#0a0a0a',
+        surfDark: '#1e2c31',
+        cream: '#fbfbf5',
+        aloe: '#c1fbd4',
+        pistachio: '#d4f9e0',
+        cool: { c1: '#9dabad', c2: '#9797a2', c3: '#bdbdca', mint: '#99b3ad' },
+        shade: { 50: '#71717a', 60: '#52525b', 70: '#3f3f46' },
+        line: '#e4e4e7',
+        'line-dark': 'rgba(255,255,255,0.08)'
+      },
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'sans-serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+.dsp { font-family: 'Inter', sans-serif; font-weight: 330; letter-spacing: -0.025em; font-feature-settings: "ss03"; }
+.i18n > span { display: none; }
+html:not([lang="vi"]) .i18n > span[lang="en"] { display: inline; }
+html[lang="vi"] .i18n > span[lang="vi"] { display: inline; }
+.btn-pill { border-radius: 9999px; display: inline-flex; items-center: center; justify-content: center; font-weight: 500; }
+.btn-solid { background: #ffffff; color: #000000; }
+.btn-solid:hover { background: #d4f9e0; }
+</style>
+</head>
+<body class="bg-black text-white antialiased font-sans">
+
+<!-- Top Bar -->
+<div class="bg-[#050505] text-[11px] font-mono text-cool-c2 py-2 px-5 border-b border-line-dark">
+  <div class="max-w-[880px] mx-auto flex items-center justify-between">
+    <a href="index.html" class="hover:text-white transition">← <span class="i18n"><span lang="en">Back to Blog Index</span><span lang="vi">Quay lại mục Lục Blog</span></span></a>
+    <div class="flex items-center gap-4">
+      <span>Tel: <a href="tel:+84944002809" class="text-white hover:underline font-semibold">0944 002 809</a></span>
+      <span class="text-white/20">|</span>
+      <div class="flex items-center gap-1" role="group" aria-label="Language">
+        <button type="button" id="btn-en" class="px-2 py-0.5 rounded hover:bg-white/10 text-cool-c2">EN</button>
+        <button type="button" id="btn-vi" class="px-2 py-0.5 rounded bg-white/15 text-white font-semibold">TIẾNG VIỆT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="border-b border-line-dark sticky top-0 bg-black/90 backdrop-blur-md z-50">
+  <div class="max-w-[880px] mx-auto px-5 py-4 flex items-center justify-between">
+    <a href="../" class="flex items-center gap-2">
+      <span class="text-[19px] font-medium text-white tracking-tight">Vuahem</span>
+      <span class="text-[11px] font-mono text-cool-c1 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full">Technical Architecture</span>
+    </a>
+    <a href="../#contact" class="btn-pill btn-solid px-4 py-1.5 text-[12.5px] text-black">
+      <span class="i18n"><span lang="en">Trial Scanner</span><span lang="vi">Dùng thử Scanner</span></span>
+    </a>
+  </div>
+</header>
+
+<!-- Article Header -->
+<div class="py-12 border-b border-line-dark bg-nightElev">
+  <div class="max-w-[880px] mx-auto px-5">
+    <div class="flex items-center gap-3 text-[12px] font-mono text-cool-c2 mb-3">
+      <span class="text-aloe font-semibold">ĐỐI SOÁT / RECONCILIATION</span>
+      <span>·</span>
+      <span>2026-10-14</span>
+      <span>·</span>
+      <span>7 min read</span>
+    </div>
+    <h1 class="dsp text-[32px] sm:text-[42px] text-white leading-tight mb-4">
+      <span class="i18n">
+        <span lang="en">Three-Way Reconciliation: E-Invoice XML ↔ Bank Payment Order ↔ Tax Dept Registry</span>
+        <span lang="vi">Đối soát 3 chiều: Hóa đơn điện tử XML ↔ Ủy nhiệm chi ngân hàng ↔ Dữ liệu cơ quan thuế</span>
+      </span>
+    </h1>
+    <div class="text-[13px] text-cool-c1 font-mono">
+      Tác giả / Author: Đội ngũ Kỹ thuật &amp; Pháp chế Vuahem · Hà Nội, Việt Nam
+    </div>
+  </div>
+</div>
+
+<!-- Article Body -->
+<main class="py-14 bg-black">
+  <article class="max-w-[880px] mx-auto px-5 text-[15.5px] text-cool-c1 leading-[1.8] space-y-6">
+
+    <!-- VI Content -->
+    <div class="i18n">
+      <div lang="vi" class="space-y-6">
+        <p class="text-[17px] text-white leading-relaxed font-medium">
+          Trước khi Luật Quản lý Thuế và Nghị định 123 có hiệu lực, kế toán thường chỉ kiểm tra hóa đơn giấy bằng mắt: đối chiếu tên đơn vị bán, mã số thuế và số tiền thanh toán. Nhưng trong kỷ nguyên số hóa, một tờ hóa đơn PDF trông hoàn hảo vẫn có thể tiềm ẩn những rủi ro thuế nghiêm trọng nếu không được đối soát chéo 3 chiều.
+        </p>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          1. Trọng tâm của Đối soát 3 Chiều (Three-Way Matching)
+        </h2>
+        <p>
+          Mô hình đối soát 3 chiều của Vuahem thiết lập một cơ chế kiểm tra tự động giữa 3 nguồn dữ liệu độc lập:
+        </p>
+        
+        <div class="bg-[#0a0a0a] border border-line-dark rounded-xl p-5 font-mono text-[12.5px] text-cool-c1 space-y-3">
+          <div class="text-white font-semibold flex items-center gap-2">
+            <span class="text-aloe">●</span> PHƯƠNG TRÌNH ĐỐI SOÁT 3 CHIỀU TẤT ĐỊNH:
+          </div>
+          <div class="p-3 bg-black/60 rounded border border-white/5 space-y-1">
+            <div>1. File XML Hóa đơn: Ký hiệu mẫu số, Số HĐ, Ngày lập, Mã cơ quan thuế cấp</div>
+            <div>2. Dữ liệu Cơ quan Thuế: Trạng thái người bán tại đúng ngày phát hành hóa đơn</div>
+            <div>3. Chứng từ Ngân hàng (UNC): Tên & Số TK thụ hưởng khớp với MST người bán</div>
+          </div>
+        </div>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          2. Tại sao phải phân tích trực tiếp file XML thay vì file PDF?
+        </h2>
+        <p>
+          Theo quy định pháp luật về hóa đơn điện tử, <strong>tệp dữ liệu XML mới là bản thể pháp lý gốc</strong> có giá trị ràng buộc. Tệp PDF bản thể hiện chỉ là bản chuyển đổi hiển thị cho người xem.
+        </p>
+        <p>
+          Nhiều trường hợp người bán gửi file PDF thể hiện đúng thông tin, nhưng trong file XML gốc, các thẻ dữ liệu về mã số thuế, mã tra cứu hoặc chữ ký số lại bị lỗi, dẫn đến việc hóa đơn không được hệ thống Tổng cục Thuế công nhận hợp lệ. Vuahem bóc tách trực tiếp các thẻ dữ liệu XML (<code>&lt;DLHDon&gt;</code>, <code>&lt;TTChung&gt;</code>, <code>&lt;NDHDon&gt;</code>) để đảm bảo tính pháp lý tuyệt đối.
+        </p>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          3. Đối chiếu thời gian thực với trạng thái nhà cung cấp
+        </h2>
+        <p>
+          Một sai lầm phổ biến là chỉ kiểm tra trạng thái MST nhà cung cấp tại thời điểm hiện tại. Nếu nhà cung cấp đóng MST vào ngày 10/09, nhưng xuất hóa đơn đề ngày 14/09:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-white/90">
+          <li>Nếu tra cứu vào tháng 10, người bán hiển thị "Ngừng hoạt động".</li>
+          <li>Kế toán viên thường không xác định được chính xác thời điểm đóng MST là trước hay sau ngày xuất hóa đơn.</li>
+          <li>Hệ thống Vuahem ghi nhận lịch sử công bố trạng thái và thực hiện so sánh: <code>Ngày công bố đóng MST &lt; Ngày xuất hóa đơn?</code> Nếu đúng, lập tức cảnh báo cờ đỏ RỦI RO CAO.</li>
+        </ul>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          4. Đối chiếu sao kê ủy nhiệm chi ngân hàng (UNC)
+        </h2>
+        <p>
+          Đối với mọi hóa đơn trên 20 triệu đồng, công cụ đối soát quét dòng tiền chuyển khoản thực tế trên sao kê ngân hàng:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-white/90">
+          <li>Xác nhận số tiền thanh toán khớp với tổng thanh toán trên hóa đơn.</li>
+          <li>Đối chiếu tên chủ tài khoản thụ hưởng trên hệ thống ngân hàng với tên pháp nhân đăng ký kinh doanh của người bán.</li>
+          <li>Cảnh báo tức thì nếu người mua chuyển tiền vào tài khoản cá nhân, phòng tránh rủi ro bị cơ quan thuế bác bỏ chi phí hợp lệ.</li>
+        </ul>
+
+        <div class="p-6 rounded-xl bg-surfDark/60 border border-line-dark text-white space-y-3 mt-8">
+          <div class="text-aloe font-semibold uppercase text-[12px] font-mono">Báo cáo Hồ sơ Rà soát Tự động</div>
+          <p class="text-[14.5px] leading-relaxed">
+            Kết quả của quy trình đối soát 3 chiều là một Hồ sơ Rà soát Hóa đơn điện tử hoàn chỉnh, phân loại hóa đơn thành 3 nhóm: <strong>HỢP LỆ (PASS)</strong>, <strong>CẦN SOÁT (REVIEW)</strong>, và <strong>RỦI RO CAO (HIGH RISK)</strong> để Kế toán trưởng chủ động đưa ra quyết định tạm dừng khấu trừ hoặc yêu cầu nhà cung cấp giải trình.
+          </p>
+        </div>
+      </div>
+
+      <!-- EN Content -->
+      <div lang="en" class="space-y-6">
+        <p class="text-[17px] text-white leading-relaxed font-medium">
+          Prior to the full rollout of mandatory e-invoicing under Decree 123, finance teams primarily inspected paper bills manually: verifying seller name, tax code, and bill total. In the digital taxation era, a visually flawless PDF invoice can still conceal catastrophic compliance failures unless verified via three-way cross-referencing.
+        </p>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          1. The Essence of Three-Way Reconciliation
+        </h2>
+        <p>
+          Vuahem's three-way reconciliation framework establishes an automated cross-verification bridge across three independent data streams:
+        </p>
+        
+        <div class="bg-[#0a0a0a] border border-line-dark rounded-xl p-5 font-mono text-[12.5px] text-cool-c1 space-y-3">
+          <div class="text-white font-semibold flex items-center gap-2">
+            <span class="text-aloe">●</span> DETERMINISTIC THREE-WAY BALANCE EQUATION:
+          </div>
+          <div class="p-3 bg-black/60 rounded border border-white/5 space-y-1">
+            <div>1. E-Invoice XML Payload: Form template, invoice number, digital issuance date</div>
+            <div>2. Tax Authority Registry: Legal operational status on the exact issuance timestamp</div>
+            <div>3. Bank Settlement Feeds: Beneficiary account name matching supplier Tax ID</div>
+          </div>
+        </div>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          2. Why Parse XML Directly Rather than PDF Representations?
+        </h2>
+        <p>
+          Under Vietnamese e-invoice law, <strong>the XML data file is the sole legally binding original document</strong>. The visual PDF file is merely an illustrative display rendition.
+        </p>
+        <p>
+          In many fraudulent or erroneous cases, the visual PDF looks correct, but the underlying XML metadata contains broken tags, invalid digital signatures, or invalid invoice form templates. Vuahem parses the structured XML directly (<code>&lt;DLHDon&gt;</code>, <code>&lt;TTChung&gt;</code>, <code>&lt;NDHDon&gt;</code>) to preserve absolute legal defensibility.
+        </p>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          3. Real-Time Vendor Operational Status Correlation
+        </h2>
+        <p>
+          A common mistake is querying vendor tax status only at the present moment. If a supplier closed their business on September 10 but issued an invoice dated September 14:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-white/90">
+          <li>Looking up status in October simply reveals "Suspended".</li>
+          <li>Manual clerks cannot easily tell whether the closure preceded or followed invoice issuance.</li>
+          <li>Vuahem tracks official historical publication timestamps and verifies: <code>Closure Date &lt; Invoice Date?</code> If true, it immediately triggers a HIGH RISK alert.</li>
+        </ul>
+
+        <h2 class="text-[22px] font-semibold text-white pt-4 border-t border-line-dark">
+          4. Bank Payment Order (UNC) Matching
+        </h2>
+        <p>
+          For any invoice exceeding the statutory 20M VND threshold, the engine cross-references actual bank settlement feeds:
+        </p>
+        <ul class="list-disc pl-5 space-y-2 text-white/90">
+          <li>Confirms payment amounts match the exact total payable on the invoice.</li>
+          <li>Validates that the recipient bank account belongs to the registered commercial legal entity of the seller, not an unapproved individual.</li>
+        </ul>
+
+        <div class="p-6 rounded-xl bg-surfDark/60 border border-line-dark text-white space-y-3 mt-8">
+          <div class="text-aloe font-semibold uppercase text-[12px] font-mono">Automated Audit Dossiers</div>
+          <p class="text-[14.5px] leading-relaxed">
+            The output of this 3-way check is an actionable Audit Dossier categorizing invoices into <strong>PASS</strong>, <strong>REVIEW</strong>, and <strong>HIGH RISK</strong>—giving Chief Accountants the clear evidence needed to hold questionable entries before filing.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </article>
+</main>
+
+<!-- Footer -->
+<footer class="py-12 bg-[#050505] border-t border-line-dark text-[13px] text-cool-c2">
+  <div class="max-w-[880px] mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div>
+      <span class="text-white font-medium">Vuahem Technologies Vietnam</span> · Hanoi, Vietnam 🇻🇳<br>
+      <span class="text-[11px] font-mono text-cool-c3">Keangnam Landmark 72, Pham Hung, Hanoi · support@vuahem.lol</span>
+    </div>
+    <div class="flex items-center gap-4 text-[12px]">
+      <a href="index.html" class="hover:text-white transition">Tất cả bài viết</a>
+      <a href="../" class="hover:text-white transition">Trang chủ Vuahem</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function setLanguage(l) {
+  document.documentElement.lang = l;
+  document.getElementById('btn-en').className = l === 'en' ? 'px-2 py-0.5 rounded bg-white/15 text-white font-semibold' : 'px-2 py-0.5 rounded hover:bg-white/10 text-cool-c2';
+  document.getElementById('btn-vi').className = l === 'vi' ? 'px-2 py-0.5 rounded bg-white/15 text-white font-semibold' : 'px-2 py-0.5 rounded hover:bg-white/10 text-cool-c2';
+  try { localStorage.setItem('vuahem.lang', l); } catch(e) {}
+}
+document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
+document.getElementById('btn-vi').addEventListener('click', () => setLanguage('vi'));
+try {
+  const saved = localStorage.getItem('vuahem.lang');
+  if (saved) setLanguage(saved);
+} catch(e) {}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vuahem Blog & Nghiên cứu Thuế | Pre-Filing VAT & Tax Risk Compliance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;420;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink: '#000000',
+        nightElev: '#0a0a0a',
+        surfDark: '#1e2c31',
+        cream: '#fbfbf5',
+        aloe: '#c1fbd4',
+        pistachio: '#d4f9e0',
+        cool: { c1: '#9dabad', c2: '#9797a2', c3: '#bdbdca', mint: '#99b3ad' },
+        shade: { 50: '#71717a', 60: '#52525b', 70: '#3f3f46' },
+        line: '#e4e4e7',
+        'line-dark': 'rgba(255,255,255,0.08)'
+      },
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'sans-serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style>
+.dsp { font-family: 'Inter', sans-serif; font-weight: 330; letter-spacing: -0.025em; font-feature-settings: "ss03"; }
+.i18n > span { display: none; }
+html:not([lang="vi"]) .i18n > span[lang="en"] { display: inline; }
+html[lang="vi"] .i18n > span[lang="vi"] { display: inline; }
+.btn-pill { border-radius: 9999px; display: inline-flex; items-center: center; justify-content: center; font-weight: 500; transition: all 0.2s; }
+.btn-solid { background: #ffffff; color: #000000; }
+.btn-solid:hover { background: #d4f9e0; }
+.btn-out-dark { border: 1px solid rgba(255,255,255,0.2); color: #ffffff; }
+.btn-out-dark:hover { background: rgba(255,255,255,0.08); }
+</style>
+</head>
+<body class="bg-black text-white antialiased font-sans">
+
+<!-- Top Bar -->
+<div class="bg-[#050505] text-[11px] font-mono text-cool-c2 py-2 px-5 border-b border-line-dark">
+  <div class="max-w-[1200px] mx-auto flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <span class="w-1.5 h-1.5 rounded-full bg-aloe animate-pulse"></span>
+      <span>Vuahem Research &amp; Tax Compliance Hub</span>
+      <span class="text-white/20">|</span>
+      <span>Hanoi, Vietnam 🇻🇳</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <span>Tel: <a href="tel:+84944002809" class="text-white hover:underline font-semibold">0944 002 809</a></span>
+      <span class="text-white/20">|</span>
+      <div class="flex items-center gap-1" role="group" aria-label="Language">
+        <button type="button" id="btn-en" class="px-2 py-0.5 rounded hover:bg-white/10 text-cool-c2">EN</button>
+        <button type="button" id="btn-vi" class="px-2 py-0.5 rounded bg-white/15 text-white font-semibold">TIẾNG VIỆT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="border-b border-line-dark sticky top-0 bg-black/90 backdrop-blur-md z-50">
+  <div class="max-w-[1200px] mx-auto px-5 py-4 flex items-center justify-between">
+    <a href="../" class="flex items-center gap-3">
+      <span class="text-[20px] font-medium text-white tracking-tight">Vuahem</span>
+      <span class="text-[11px] font-mono text-cool-c1 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full">Blog &amp; Insights</span>
+    </a>
+    <nav class="flex items-center gap-6 text-[13.5px] text-cool-c1 font-medium">
+      <a href="../" class="hover:text-white transition">← <span class="i18n"><span lang="en">Back to Home</span><span lang="vi">Trang chủ Vuahem</span></span></a>
+      <a href="../#scanner" class="hover:text-white transition"><span class="i18n"><span lang="en">Live Demo</span><span lang="vi">Demo trực tiếp</span></span></a>
+      <a href="../#pricing" class="hover:text-white transition"><span class="i18n"><span lang="en">Pricing</span><span lang="vi">Bảng giá</span></span></a>
+      <a href="../#contact" class="btn-pill btn-solid px-4 py-2 text-[13px] text-black"><span class="i18n"><span lang="en">Apply for Pilot</span><span lang="vi">Đăng ký Chạy thử</span></span></a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="py-16 lg:py-20 border-b border-line-dark bg-nightElev">
+  <div class="max-w-[1200px] mx-auto px-5">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-cool-mint text-[11.5px] font-mono mb-4">
+      <span>●</span> <span class="i18n"><span lang="en">Technical Compliance & Tax Risk Notes</span><span lang="vi">Ghi chép Kỹ thuật & Quản trị Rủi ro Thuế</span></span>
+    </div>
+    <h1 class="dsp text-[36px] sm:text-[48px] lg:text-[54px] text-white leading-tight max-w-3xl">
+      <span class="i18n">
+        <span lang="en">Defending input VAT deductibility with automated cross-checks.</span>
+        <span lang="vi">Bảo vệ quyền khấu trừ thuế GTGT với đối soát tự động.</span>
+      </span>
+    </h1>
+    <p class="text-[16px] text-cool-c1 mt-4 max-w-2xl leading-relaxed">
+      <span class="i18n">
+        <span lang="en">In-depth technical guides for Chief Accountants, CFOs, and finance teams navigating Decree 123 e-invoices, bank transfer proofs, and vendor tax status compliance.</span>
+        <span lang="vi">Cẩm nang chuyên sâu dành cho Kế toán trưởng, CFO và phòng tài chính doanh nghiệp về hóa đơn điện tử Nghị định 123, chứng từ thanh toán không dùng tiền mặt và rà soát trạng thái nhà cung cấp.</span>
+      </span>
+    </p>
+  </div>
+</section>
+
+<!-- Articles Grid -->
+<main class="py-16 bg-black">
+  <div class="max-w-[1200px] mx-auto px-5">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Article 1 -->
+      <article class="p-7 rounded-2xl bg-[#0a0a0a] border border-line-dark flex flex-col justify-between hover:border-white/30 transition group">
+        <div>
+          <div class="flex items-center justify-between text-[11px] font-mono text-cool-c2 mb-4 pb-3 border-b border-white/5">
+            <span class="text-aloe font-semibold uppercase">Rủi ro Thuế / Tax Risk</span>
+            <span>6 min read</span>
+          </div>
+          <h2 class="text-[20px] font-medium text-white group-hover:text-aloe transition leading-snug mb-3">
+            <a href="5-input-vat-risks-decree-123.html">
+              <span class="i18n">
+                <span lang="en">5 Input VAT Invoice Risks That Cause Disallowance Under Decree 123</span>
+                <span lang="vi">5 rủi ro hóa đơn đầu vào khiến doanh nghiệp bị loại thuế GTGT theo Nghị định 123</span>
+              </span>
+            </a>
+          </h2>
+          <p class="text-[13.5px] text-cool-c1 leading-relaxed mb-6">
+            <span class="i18n">
+              <span lang="en">Analyzing closed vendors, post-closure issuance dates, missing bank wire transfer slips, and retroactive penalties under tax audit rules.</span>
+              <span lang="vi">Phân tích rủi ro nhà cung cấp đóng MST, hóa đơn xuất sau ngày ngừng kinh doanh, thiếu ủy nhiệm chi trên 20 triệu và truy thu thuế 20%.</span>
+            </span>
+          </p>
+        </div>
+        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-[12px]">
+          <span class="font-mono text-cool-c3">2026-10-18</span>
+          <a href="5-input-vat-risks-decree-123.html" class="text-aloe font-medium hover:underline inline-flex items-center gap-1">
+            <span class="i18n"><span lang="en">Read article →</span><span lang="vi">Đọc bài viết →</span></span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="p-7 rounded-2xl bg-[#0a0a0a] border border-line-dark flex flex-col justify-between hover:border-white/30 transition group">
+        <div>
+          <div class="flex items-center justify-between text-[11px] font-mono text-cool-c2 mb-4 pb-3 border-b border-white/5">
+            <span class="text-aloe font-semibold uppercase">Đối soát / Reconciliation</span>
+            <span>7 min read</span>
+          </div>
+          <h2 class="text-[20px] font-medium text-white group-hover:text-aloe transition leading-snug mb-3">
+            <a href="three-way-reconciliation-guide.html">
+              <span class="i18n">
+                <span lang="en">Three-Way Reconciliation: E-Invoice XML ↔ Bank Payment Order ↔ Tax Dept Registry</span>
+                <span lang="vi">Đối soát 3 chiều: Hóa đơn điện tử XML ↔ Ủy nhiệm chi ngân hàng ↔ Dữ liệu cơ quan thuế</span>
+              </span>
+            </a>
+          </h2>
+          <p class="text-[13.5px] text-cool-c1 leading-relaxed mb-6">
+            <span class="i18n">
+              <span lang="en">Technical architecture for parsing Decree 123 XML structures, matching wire slips against supplier accounts, and flagging risk before VAT filing.</span>
+              <span lang="vi">Kiến trúc kỹ thuật bóc tách file XML hóa đơn, đối chiếu tài khoản ngân hàng thụ hưởng với MST người bán và cảnh báo chênh lệch tự động.</span>
+            </span>
+          </p>
+        </div>
+        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-[12px]">
+          <span class="font-mono text-cool-c3">2026-10-14</span>
+          <a href="three-way-reconciliation-guide.html" class="text-aloe font-medium hover:underline inline-flex items-center gap-1">
+            <span class="i18n"><span lang="en">Read article →</span><span lang="vi">Đọc bài viết →</span></span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="p-7 rounded-2xl bg-[#0a0a0a] border border-line-dark flex flex-col justify-between hover:border-white/30 transition group">
+        <div>
+          <div class="flex items-center justify-between text-[11px] font-mono text-cool-c2 mb-4 pb-3 border-b border-white/5">
+            <span class="text-aloe font-semibold uppercase">Checklist Kế toán / Audit Checklist</span>
+            <span>5 min read</span>
+          </div>
+          <h2 class="text-[20px] font-medium text-white group-hover:text-aloe transition leading-snug mb-3">
+            <a href="quarterly-vat-audit-checklist.html">
+              <span class="i18n">
+                <span lang="en">Quarterly VAT Pre-Filing Audit Checklist for Chief Accountants</span>
+                <span lang="vi">Checklist rà soát hóa đơn trước kỳ kê khai thuế quý cho Kế toán trưởng</span>
+              </span>
+            </a>
+          </h2>
+          <p class="text-[13.5px] text-cool-c1 leading-relaxed mb-6">
+            <span class="i18n">
+              <span lang="en">Step-by-step verification checklist to review input invoices, electronic signatures, and payment thresholds before submitting Form 01/GTGT.</span>
+              <span lang="vi">Bảng kiểm tra thực tế từng bước để rà soát danh sách hóa đơn đầu vào, chữ ký số và ngưỡng thanh toán trước khi nộp Tờ khai 01/GTGT.</span>
+            </span>
+          </p>
+        </div>
+        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-[12px]">
+          <span class="font-mono text-cool-c3">2026-10-09</span>
+          <a href="quarterly-vat-audit-checklist.html" class="text-aloe font-medium hover:underline inline-flex items-center gap-1">
+            <span class="i18n"><span lang="en">Read article →</span><span lang="vi">Đọc bài viết →</span></span>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="py-12 bg-[#050505] border-t border-line-dark text-[13px] text-cool-c2">
+  <div class="max-w-[1200px] mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div>
+      <span class="text-white font-medium">Vuahem Technologies Vietnam</span> (vuahem.lol) · Hanoi, Vietnam 🇻🇳<br>
+      <span class="text-[11px] font-mono text-cool-c3">Keangnam Landmark 72, Pham Hung, Nam Tu Liem, Hanoi · Tel: 0944 002 809 · support@vuahem.lol</span>
+    </div>
+    <div class="flex items-center gap-4 text-[12px]">
+      <a href="../" class="hover:text-white transition">Trang chủ</a>
+      <a href="../#scanner" class="hover:text-white transition">Scanner Demo</a>
+      <a href="../#contact" class="hover:text-white transition">Liên hệ</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function setLanguage(l) {
+  document.documentElement.lang = l;
+  document.getElementById('btn-en').className = l === 'en' ? 'px-2 py-0.5 rounded bg-white/15 text-white font-semibold' : 'px-2 py-0.5 rounded hover:bg-white/10 text-cool-c2';
+  document.getElementById('btn-vi').className = l === 'vi' ? 'px-2 py-0.5 rounded bg-white/15 text-white font-semibold' : 'px-2 py-0.5 rounded hover:bg-white/10 text-cool-c2';
+  try { localStorage.setItem('vuahem.lang', l); } catch(e) {}
+}
+document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
+document.getElementById('btn-vi').addEventListener('click', () => setLanguage('vi'));
+try {
+  const saved = localStorage.getItem('vuahem.lang');
+  if (saved) setLanguage(saved);
+} catch(e) {}
+</script>
+
+</body>
+</html>
