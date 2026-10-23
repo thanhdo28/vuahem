@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="vi" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,8 +86,8 @@ html[lang="vi"] .i18n>span[lang="vi"]{display:inline}
       <span>Email: <a href="mailto:support@vuahem.lol" class="text-white/80 hover:text-white font-mono">support@vuahem.lol</a></span>
       <span class="text-white/20">|</span>
       <span class="flex items-center gap-1" role="group" aria-label="Language / Ngôn ngữ">
-        <button type="button" data-lang="en" class="langBtn px-1.5 py-0.5 rounded hover:bg-white/10" aria-current="true">EN</button>
-        <button type="button" data-lang="vi" class="langBtn px-1.5 py-0.5 rounded hover:bg-white/10" aria-current="false">TIẾNG VIỆT</button>
+        <button type="button" data-lang="en" class="langBtn px-1.5 py-0.5 rounded hover:bg-white/10" aria-current="false">EN</button>
+        <button type="button" data-lang="vi" class="langBtn px-1.5 py-0.5 rounded hover:bg-white/10" aria-current="true">TIẾNG VIỆT</button>
       </span>
       <span class="text-white/20">|</span>
       <a href="#contact" class="hover:text-white transition"><span class="i18n"><span lang="en">Client Portal</span><span lang="vi">Cổng khách hàng</span></span></a>
@@ -122,8 +122,8 @@ html[lang="vi"] .i18n>span[lang="vi"]{display:inline}
   </div>
   <div id="mobileNav" hidden class="lg:hidden pb-4 flex flex-col gap-1 text-[15px] text-white/90 border-t border-line-dark pt-3">
     <div class="flex items-center gap-1 pb-2 mb-1 border-b border-line-dark/60" role="group" aria-label="Language / Ngôn ngữ">
-      <button type="button" data-lang="en" class="langBtn px-2 py-1 rounded" aria-current="true">EN</button>
-      <button type="button" data-lang="vi" class="langBtn px-2 py-1 rounded" aria-current="false">TIẾNG VIỆT</button>
+      <button type="button" data-lang="en" class="langBtn px-2 py-1 rounded" aria-current="false">EN</button>
+      <button type="button" data-lang="vi" class="langBtn px-2 py-1 rounded" aria-current="true">TIẾNG VIỆT</button>
     </div>
     <a href="#scanner" class="py-3 px-1"><span class="i18n"><span lang="en">Live Demo</span><span lang="vi">Demo trực tiếp</span></span></a>
     <a href="#how" class="py-3 px-1"><span class="i18n"><span lang="en">How It Works</span><span lang="vi">Cách hoạt động</span></span></a>
@@ -861,7 +861,7 @@ function setLang(l){
   applyLang();
 }
 document.querySelectorAll('.langBtn').forEach(b=>b.addEventListener('click',function(){setLang(this.dataset.lang);}));
-try{const saved=localStorage.getItem('vuahem.lang');if(saved==='vi')document.documentElement.lang='vi';}catch(e){}
+try{const saved=localStorage.getItem('vuahem.lang');if(saved){document.documentElement.lang=saved;}else{document.documentElement.lang='vi';}}catch(e){}
 applyLang();
 </script>
 
