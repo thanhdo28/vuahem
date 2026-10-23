@@ -192,7 +192,21 @@
   "SOC 2 Type II Controls": "Kiểm soát SOC 2 Type II",
   "Engineered by AI Finance Team in Hanoi, Vietnam": "Phát triển bởi đội ngũ công nghệ tài chính tại Hà Nội, Việt Nam",
   "Blog": "Bài viết",
-  "Research & Blog": "Nghiên cứu & Blog"
+  "Research & Blog": "Nghiên cứu & Blog",
+  "Founding Team & Tax Research": "Đội ngũ Sáng lập & Nghiên cứu Thuế",
+  "Engineered by Hanoi tax technologists & CPAs": "Phát triển bởi đội ngũ công nghệ thuế & kiểm toán tại Hà Nội",
+  "Dedicated to eliminating tax compliance risks for businesses under Decree 123.": "Chuyên sâu giải quyết các rủi ro tuân thủ hóa đơn cho doanh nghiệp theo Nghị định 123.",
+  "Nguyễn Minh Tuấn": "Nguyễn Minh Tuấn",
+  "Co-founder & Tech Lead": "Đồng sáng lập & Phụ trách Công nghệ",
+  "Former Senior Software Engineer at FPT Software. 9+ years building enterprise data parsers and high-throughput transaction pipelines. B.S. in Computer Science from Hanoi University of Science & Technology (HUST).": "Nguyên Kỹ sư Phần mềm Cao cấp tại FPT Software. 9+ năm kinh nghiệm xây dựng hệ thống bóc tách dữ liệu và xử lý giao dịch quy mô lớn. Cử nhân Khoa học Máy tính (Đại học Bách Khoa Hà Nội).",
+  "Trần Thu Trang, CPA": "Trần Thu Trang, CPA",
+  "Co-founder & Head of Tax Advisory": "Đồng sáng lập & Trưởng bộ phận Tư vấn Thuế",
+  "Certified Public Accountant (CPA Vietnam) with 12+ years of chief accounting and corporate tax audit experience. Former Senior Tax Auditor at Grant Thornton Vietnam.": "Chứng chỉ Kiểm toán viên (CPA Việt Nam) với 12+ năm kinh nghiệm Kế toán trưởng và thanh tra quyết toán thuế doanh nghiệp. Nguyên Kiểm toán viên Thuế Cao cấp tại Grant Thornton Việt Nam.",
+  "OPEN RESEARCH EVAL KIT": "BỘ CÔNG CỤ THỬ NGHIỆM MỞ",
+  "Open Decree 123 XML Validator Schema & Test Suite": "Bộ công cụ Kiểm thử & Schema XML Hóa đơn Nghị định 123 Mở",
+  "Sanitized collection of 100+ compliant and anomalous XML invoices for developers and tax agents.": "Tập hợp mẫu hơn 100 hóa đơn XML chuẩn và các tình huống lỗi giả lập dành cho lập trình viên và đại lý thuế.",
+  "View on GitHub": "Xem trên GitHub",
+  "Team": "Đội ngũ"
  },
  "frag": {
   "Pre-filing invoice risk audit": "Rà soát rủi ro hóa đơn đầu vào",
